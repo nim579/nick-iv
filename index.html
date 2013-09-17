@@ -1,10 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Nick Iv</title>
-  </head>
-  <body>
-    <h1>Nick Iv</h1>
-    <i>Comming soon...</i>
-  </body>
+    <head>
+        <title>Nick Iv</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" type="image/png" href="static/favicon.png" />
+        <link rel="stylesheet" type="text/css" href="/static/global.css">
+        <script type="text/javascript" src="http://yandex.st/jquery/1.8.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/bootstrap.tooltip.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="table_wrapper">
+                <div class="table_row">
+                    <div class="table_scope">
+                        <header>
+                            <img src="static/ava.png" class="avatar">
+                            <h1 class="header">Иванушкин Николай</h1>
+                            <p>Frontend-разработчик</p>
+                        </header>
+                        <nav class="mainPage">
+                            <ul>
+                                <!-- <li><a href="/bio.html">О себе</a></li> -->
+                                <li><a href="#" class="mDisabled" data-toggle="tooltip" data-placement="bottom" title="В разработке">О себе</a></li>
+                                <li><a href="http://dev.nim579.ru" target="_self">Работы</a></li>
+                                <li><a href="/photos.html">Фотографии</a></li>
+                                <!-- <li><a href="/mz.html">Московские закоулки</a></li> -->
+                                <li><a href="#" class="mDisabled" data-toggle="tooltip" data-placement="bottom" title="В разработке">Московские закоулки</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="table_row">
+                    <footer class="table_scope footer">
+                        <div class="footer_content">
+                            <div class="footer_content_wraper">
+                                <nobr><span class="footer_item">E-mail: <a href="mailto:i.am@nick-iv.me">i.am@nick-iv.me</a></span></nobr>
+                                <nobr><span class="footer_item">Mobile: <i>+7 919 976-36-18</i></span></nobr>
+                                <nobr>
+                                    <span class="footer_item"><a class="noline" href="http://vk.com/nim579"><img src="static/vk.png" alt="Vkontakte" /></a></span>
+                                    <span class="footer_item"><a class="noline" href="http://www.facebook.com/nim579"><img src="static/fb.png" alt="Facebook" /></a></span>
+                                    <span class="footer_item"><a class="noline" href="http://instagram.com/nim579"><img src="static/instagram.png" alt="Instagram" /></a></span>
+                                </nobr>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <div id="promo"></div>
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter22330363 = new Ya.Metrika({id:22330363,
+                            clickmap:true,
+                            trackLinks:true,
+                            accurateTrackBounce:true});
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+        </script>
+        <noscript><div><img src="//mc.yandex.ru/watch/22330363" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- /Yandex.Metrika counter -->
+        <!-- <div class="promo" style="position: absolute; top: 100%; left: 0; right: 0; height: 100%;">test</div> -->
+    </body>
 </html>
