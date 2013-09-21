@@ -5,44 +5,45 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="icon" type="image/png" href="static/favicon.png" />
-        <link rel="stylesheet" type="text/css" href="/static/global.css">
+        <link rel="icon" type="image/png" href="/static/images/favicon.png" />
+        <link rel="stylesheet" type="text/css" href="/static/css/global.css">
         <script type="text/javascript" src="http://yandex.st/jquery/1.8.1/jquery.min.js"></script>
-        <script type="text/javascript" src="/static/bootstrap.tooltip.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap.tooltip.js"></script>
     </head>
-    <body>
-        <div class="container">
-            <div class="table_wrapper">
-                <div class="table_row">
-                    <div class="table_scope">
+    <body class="bLayout">
+        <div class="bLayout__eContainer">
+            <div class="bLayout__eTableWrapper">
+                <div class="bLayout__eTableRow">
+                    <div class="bLayout__eTableScope">
                         <header>
-                            <div class="avatar"></div>
-                            <h1 class="header">Иванушкин Николай</h1>
-                            <p>Frontend-разработчик</p>
+                            <div class="bHeader__eAvatar"></div>
+                            <h1 class="bHeader__eTitle">Иванушкин Николай</h1>
+                            <p class="bHeader__eDescr">Frontend-разработчик</p>
                         </header>
-                        <nav class="mainPage">
-                            <ul>
-                                <li><a href="/bio.html">О себе</a></li>
-                                <li><a href="http://dev.nim579.ru" target="_self">Работы</a></li>
-                                <li><a href="/photos.html">Фотографии</a></li>
+                        <nav class="bNavi__eMain">
+                            <ul class="bNavi__eMainList">
+                                <li class="bNavi__eMainItem"><a href="/bio.html">О себе</a></li>
+                                <li class="bNavi__eMainItem"><a href="http://dev.nim579.ru" target="_self">Работы</a></li>
+                                <li class="bNavi__eMainItem"><a href="/photos.html">Фотографии</a></li>
                                 <!-- <li><a href="/mz.html">Московские закоулки</a></li> -->
-                                <li>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Пока старая версия. Cкоро открытие">Московские закоулки</a>
+                                <li class="bNavi__eMainItem">
+                                    <a href="http://nim579.ru/index/0-12/" data-toggle="tooltip" data-placement="bottom" title="Пока старая версия. Cкоро открытие">Московские закоулки</a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
                 </div>
-                <div class="table_row">
-                    <footer class="table_scope footer">
-                        <div class="footer_content">
-                            <div class="footer_content_wraper">
-                                <nobr><span class="footer_item">E-mail: <a href="mailto:i.am@nick-iv.me">i.am@nick-iv.me</a></span></nobr>
-                                <nobr><span class="footer_item">Mobile: <i>+7 919 976-36-18</i></span></nobr>
+                <div class="bLayout__eTableRow">
+                    <footer class="bLayout__eTableScope bLayout__eTableScopeFooter">
+                        <div class="bFooter">
+                            <div class="bFooter__eWrapper">
+                                <nobr><span class="bFooter__eItem">E-mail: <a href="mailto:i.am@nick-iv.me">i.am@nick-iv.me</a></span></nobr>
+                                <nobr><span class="bFooter__eItem">Mobile: <i>+7 916 976-36-18</i></span></nobr>
                                 <nobr>
-                                    <span class="footer_item"><a class="noline" href="http://vk.com/nim579"><img src="static/vk.png" alt="Vkontakte" /></a></span>
-                                    <span class="footer_item"><a class="noline" href="http://www.facebook.com/nim579"><img src="static/fb.png" alt="Facebook" /></a></span>
-                                    <span class="footer_item"><a class="noline" href="http://instagram.com/nim579"><img src="static/instagram.png" alt="Instagram" /></a></span>
+                                    <span class="bFooter__eItem"><a class="mNoline" href="http://vk.com/nim579"><i class="bIcons mVkontakte"></i></a></span>
+                                    <span class="bFooter__eItem"><a class="mNoline" href="http://www.facebook.com/nim579"><i class="bIcons mFacebook"></i></a></span>
+                                    <span class="bFooter__eItem"><a class="mNoline" href="http://instagram.com/nim579"><i class="bIcons mInstagram"></i></a></span>
+                                    <span class="bFooter__eItem"><a class="mNoline" href="http://github.com/nim579"><i class="bIcons mGithub"></i></a></span>
                                 </nobr>
                             </div>
                         </div>

@@ -78,7 +78,7 @@ var tablePics = (function() {
         _this = this;
         $('.jsFotka').live('click', function(e){
             e.preventDefault();
-            var $el = $('<div class="bHighlight__eContainer"><div class="bHighlight__eWrapper"><img src="/static/b/bIcons/preloader.gif" alt=""></div><img src="/static/b/bIcons/preloader.gif" alt=""><div class="bHighlight__eClose">×</div></div>');
+            var $el = $('<div class="bHighlight__eContainer"><div class="bHighlight__eWrapper"><img src="/static/b/bIcons/preloader.gif" alt=""></div><div class="bHighlight__eClose">×</div></div>');
             if(!$('body').find('bHighlight__eContainer')[0]){
                 $el.appendTo('body');
             }

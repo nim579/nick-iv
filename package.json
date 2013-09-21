@@ -1,0 +1,23 @@
+{
+  "name": "nick-iv.github.io",
+  "version": "0.1.0",
+  "description": "nick-iv.github.io =================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nick-iv/nick-iv.github.io.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "gitHead": "5eb7922d64c098ee5ededad3cb8f719ad8a68104",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "less": "~1.4.2",
+    "jade": "~0.35.0",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}
