@@ -1,5 +1,5 @@
 @font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local('Open Sans'),local('OpenSans'),url(http://themes.googleusercontent.com/static/fonts/opensans/v6/RjgO7rYTmqiVp7vzi-Q5UbO3LdcAZYWl9Si6vvxL-qU.woff) format('woff')}@font-face{font-family:'Open Sans';font-style:italic;font-weight:400;src:local('Open Sans Italic'),local('OpenSans-Italic'),url(http://themes.googleusercontent.com/static/fonts/opensans/v6/xjAJXh38I15wypJXxuGMBkbeuvGrcRTTBH456c-a4yI.woff) format('woff')}html{height:100%}
-a:active,a:link,a:visited{color:#484880;text-decoration:none;border-bottom:1px solid #545481}
+a:active,a:link,a:visited{color:#484880;text-decoration:none;border-bottom:1px solid #545481;transition:color 0.4s}
 a:hover{color:#7575b6;text-decoration:none;border-bottom:1px solid #7f7fb9}
 a.mNoline{text-decoration:underline;border-bottom:0;outline:0}
 .bLayout{padding:0;margin:0;background-color:#F1F0F0;font-size:0.85em;font-weight:normal;font-family:'Open Sans',sans-serif;color:#3a3a3a;height:100%}.bLayout__eContainer{position:absolute;top:0;left:0;margin:0 auto;height:100%;width:100%;min-width:450px}
