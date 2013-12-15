@@ -35,6 +35,9 @@
       data.entries = _.filter(data.entries, function(entry) {
         return entry.imageCount > 0;
       });
+      data.entries = _.sortBy(data.entries, function(entry) {
+        return entry.published;
+      }).reverse();
       data.entries = _.reject(data.entries, function(entry) {
         return entry.id === 'urn:yandex:fotki:nim579:album:11940';
       });

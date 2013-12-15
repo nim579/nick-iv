@@ -34,6 +34,10 @@ fotki.models.albums = Backbone.Collection.extend
         data.entries = _.filter data.entries, (entry)->
             return entry.imageCount > 0
 
+        data.entries = _.sortBy data.entries, (entry)->
+            return entry.published
+        .reverse()
+
         data.entries = _.reject data.entries, (entry)->
             return entry.id is 'urn:yandex:fotki:nim579:album:11940'
 
