@@ -7,23 +7,29 @@ a.mNoline{text-decoration:underline;border-bottom:0;outline:0}
 .bLayout__eTableRow{display:table-row}
 .bLayout__eTableScope{display:table-cell;width:100%;text-align:center;vertical-align:middle}
 .bLayout__eTableScopeFooter{vertical-align:top;height:50px}
-.bFooter{max-width:900px;min-width:300px;width:70%;margin:0 auto;border-top:1px solid #999;padding:15px 0 20px 0;color:#777;text-align:center}.bFooter__eWrapper{display:inline-block;margin-left:-15px}
-.bFooter__eItem{display:inline-block;padding:5px 0 0 15px}
+.bFooter{max-width:900px;min-width:300px;width:70%;margin:0 auto;border-top:1px solid #999;padding:15px 0 20px 0;color:#777;text-align:center}.bFooter__eWrapper{display:inline-block;margin-left:-15px;line-height:30px}
+.bFooter__eItem{display:inline-block;padding:0 0 0 15px}
 .bFooter__eItemImg{position:relative;bottom:-0.18em;border:0}
 .bHeader__eTitle{font-size:2.5em;margin:20px 0 0 0;color:#272759}
 .bHeader__eMega{font-size:15em;line-height:0.9em;text-shadow:0 0 60px rgba(77,95,164,0.6)}
 .bHeader__eDescr{max-width:650px;margin:0 auto;padding:0 20px}
 .bHeader__eAvatar{display:inline-block;width:200px;height:200px;margin-top:5px;border:5px solid #272759;border-radius:110px;box-shadow:0 0 20px rgba(255,255,255,0.4) inset,0 0 150px 20px rgba(77,95,164,0.6);background:#272759 url('/static/images/ava.png') no-repeat}
 .bPage__eWrapper{min-height:100%;position:relative;vertical-align:baseline}
-.bPage__eFooter{margin-top:-70px;position:relative;vertical-align:baseline}
+.bPage__eFooter{margin-top:-66px;position:relative;vertical-align:baseline}
 .bPage__eHeader{max-width:1400px;min-width:720px;width:70%;display:block;margin:0 auto 20px;padding:0 20px}
-.bPage__eArticle{max-width:1400px;min-width:720px;width:70%;display:block;margin:0 auto 30px;text-align:center;vertical-align:top;padding:0 20px 70px 20px}
+.bPage__eArticle{max-width:1400px;min-width:720px;width:70%;display:block;margin:0 auto 30px;text-align:center;vertical-align:top;padding:0 20px 66px 20px}
 .bPage__eTitle{display:inline-block}
 .bPhotoPage__eHiddenPhoto{width:200px;height:0;margin:0 20px}
 .bPhotoPage__ePhotos{margin:0 -20px}
 .bPhotoPage__eColumn{display:inline-block;vertical-align:top;text-align:left}
 .bPhotoPage__ePhotosLink{text-decoration:0;border:0 !important;display:block;margin:20px;cursor:pointer;vertical-align:bottom}
 .bPhotoPage__ePhotosImg{display:inline-block;width:200px;height:auto}
+.bPhotoPage__eAlbums{text-align:justify;margin:0 -20px}
+.bPhotoPage__eAlbumsItem{display:inline-block;margin:0 20px 40px 20px;vertical-align:top}
+.bPhotoPage__eAlbumsImg{height:150px;border:0;cursor:pointer}
+.bPhotoPage__eAlbumsText{display:block;cursor:pointer;text-align:left}
+.bPhotoPage__eAlbum{display:inline-block;margin:0 20px;text-align:left}
+.bPhotoPage__eAlbumTitle{font-size:1.5em}
 .bNavi__eMain{margin:20px 0 20px 15px}
 .bNavi__eMainList{list-style-type:none;padding:0}
 .bNavi__eMainItem{display:inline-block;font-size:1.2em;font-weight:normal;padding-right:15px}.bNavi__eMainItem.mDisabled{color:#777;font-style:italic;opacity:0.5;cursor:default;border:0;text-decoration:none}
@@ -52,4 +58,4 @@ a.mNoline{text-decoration:underline;border-bottom:0;outline:0}
 .tooltip.bottom .tooltip-arrow{top:0;left:50%;margin-left:-5px;border-width:0 5px 5px;border-bottom-color:#000000}
 .tooltip.bottom-left .tooltip-arrow{top:0;left:5px;border-width:0 5px 5px;border-bottom-color:#000000}
 .tooltip.bottom-right .tooltip-arrow{top:0;right:5px;border-width:0 5px 5px;border-bottom-color:#000000}
-@media screen and (max-width:720px){.bPage__eHeader,.bPage__eArticle{max-width:680px;min-width:240px;width:70%} .bPhotoPage__eHiddenPhoto{width:100px;height:0;margin:0 10px} .bPhotoPage__ePhotosLink{text-decoration:0;border:0;display:block;margin:10px;cursor:pointer;vertical-align:bottom} .bPhotoPage__ePhotosImg{display:inline-block;width:100px;height:auto}}
+@media screen and (max-width:760px){.bPage__eHeader,.bPage__eArticle{max-width:680px;min-width:240px;width:70%} .bPhotoPage__eHiddenPhoto{width:100px;height:0;margin:0 10px} .bPhotoPage__ePhotosLink{text-decoration:0;border:0;display:block;margin:10px;cursor:pointer;vertical-align:bottom} .bPhotoPage__ePhotosImg{display:inline-block;width:100px;height:auto}}@media screen and (max-width:680px){.bPage__eArticle{padding-bottom:96px} .bPage__eFooter{margin-top:-96px}}@media screen and (max-width:600px){.bHelpers__eNoteText{display:block;width:auto;margin:0}}@media (max-width:500px){.bLayout__eTableScope{vertical-align:top;padding-top:3em} .bNavi__eMainList{display:inline-block;text-align:left;width:80%} .bNavi__eMainItem{display:block;font-size:1.5em}}

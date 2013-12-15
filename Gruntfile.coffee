@@ -8,15 +8,30 @@ module.exports = (grunt)->
                 dest: 'static/css/global.css'
                 path: 'static/'
 
+        coffee:
+            frontend:
+                files: [
+                    expand: true
+                    cwd: ''
+                    src: ['static/js/*.coffee']
+                    dest: ''
+                    ext: '.js'
+                ]
+
         watch:
             less:
                 files: ['static/**/*.less']
                 tasks: 'less'
 
+            coffee:
+                files: ['static/js/**/*.coffee']
+                tasks: 'coffee:frontend'
+
     path = require('path')
     less = require('less')
 
     grunt.loadNpmTasks 'grunt-contrib-watch'
+    grunt.loadNpmTasks 'grunt-contrib-coffee'
 
     grunt.registerTask 'default', 'Default task', ->
         grunt.log.ok 'Grunt file found'

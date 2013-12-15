@@ -1,4 +1,4 @@
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 760px) {
     .bPage__eHeader, .bPage__eArticle {
         max-width: 680px;
         min-width: 240px;
@@ -21,5 +21,42 @@
         display: inline-block;
         width: 100px;
         height: auto;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .bPage__eArticle {
+        padding-bottom: 96px;
+    }
+    .bPage__eFooter {
+        margin-top: -96px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .bHelpers__eNoteText {
+        display: block;
+        width: auto;
+        margin: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .bLayout {
+        &__eTableScope{
+            vertical-align: top;
+            padding-top: 3em;
+        }
+    }
+    .bNavi {
+        &__eMainList {
+            display: inline-block;
+            text-align: left;
+            width: 80%;
+        }
+        &__eMainItem {
+            display: block;
+            font-size: 1.5em;
+        }
     }
 }
