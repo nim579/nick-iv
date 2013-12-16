@@ -105,7 +105,7 @@ fotki.views.albums = Backbone.View.extend
     openAlbum: (e)->
         albumId = $(e.currentTarget).attr('id')
         @model.select @model.get albumId
-        fotki.router.navigate 'albums/' + album.id.replace(/^.*:(\w+)$/, '$1')
+        fotki.router.navigate 'albums/' + albumId.replace(/^.*:(\w+)$/, '$1')
 
         return false
 

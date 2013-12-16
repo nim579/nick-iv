@@ -117,7 +117,7 @@
       var albumId;
       albumId = $(e.currentTarget).attr('id');
       this.model.select(this.model.get(albumId));
-      fotki.router.navigate('albums/' + album.id.replace(/^.*:(\w+)$/, '$1'));
+      fotki.router.navigate('albums/' + albumId.replace(/^.*:(\w+)$/, '$1'));
       return false;
     },
     closeAlbum: function() {
