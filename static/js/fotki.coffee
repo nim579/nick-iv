@@ -125,8 +125,12 @@ fotki.views.album = Backbone.View.extend
 
         @resize = _.debounce =>
             @columnWidth = $('.bPhotoPage__eHiddenPhoto').outerWidth(true)
-            @columnsCount = Math.floor @$el.width() / @columnWidth
-            @render()
+            newColumnsCount = Math.floor @$el.width() / @columnWidth
+
+            if newColumnsCount isnt @columnsCount
+                @columnsCount = newColumnsCount
+                @render()
+
         , 200
 
         $(window).bind 'resize', _.bind(@resize, @)

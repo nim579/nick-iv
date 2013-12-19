@@ -136,9 +136,13 @@
       this.columnWidth = $('.bPhotoPage__eHiddenPhoto').outerWidth(true);
       this.columnsCount = Math.floor(this.$el.width() / this.columnWidth);
       this.resize = _.debounce(function() {
+        var newColumnsCount;
         _this.columnWidth = $('.bPhotoPage__eHiddenPhoto').outerWidth(true);
-        _this.columnsCount = Math.floor(_this.$el.width() / _this.columnWidth);
-        return _this.render();
+        newColumnsCount = Math.floor(_this.$el.width() / _this.columnWidth);
+        if (newColumnsCount !== _this.columnsCount) {
+          _this.columnsCount = newColumnsCount;
+          return _this.render();
+        }
       }, 200);
       return $(window).bind('resize', _.bind(this.resize, this));
     },

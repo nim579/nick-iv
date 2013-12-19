@@ -26,10 +26,21 @@
             myMap.geoObjects.add(new ymaps.GeoObject({
                 geometry: {type: "Point", coordinates: [randomY / 1000000, randomX / 1000000]},
                 properties: {
-                    balloonContentBody: 'Пока здесь ничего нет.<br>Зато, есть на <a href="http://nim579.ru/index/0-12/">старом сайте</a>'
+                    balloonContentHeader: 'Пока здесь ничего нет',
+                    balloonContentBody: 'Однако, вы&nbsp;можете <a href="mailto:mz@nim579.ru">поспособствовать</a> добавлению этого места в&nbsp;&laquo;Московские Закоулки&raquo;',
+                    // balloonContentFooter: 'tests'
                 }
             },
-            {preset: "islands#dotIcon"}));
+            {preset: "islands#icon", iconColor: '#a5260a'}));
+            myMap.geoObjects.add(new ymaps.GeoObject({
+                geometry: {type: "Point", coordinates: [55.777029, 37.445168]},
+                properties: {
+                    balloonContentHeader: '<a href="">Живописный мост</a>',
+                    balloonContentBody: 'Этот мост стал визитной карточкой города',
+                    balloonContentFooter: 'старая версия статьи'
+                }
+            },
+            {preset: "islands#dotIcon", iconColor: '#3b5998'}));
 
             var typeSelector = new ymaps.control.TypeSelector(['yandex#publicMapHybrid']);
             ypeSelector.expand()
@@ -37,87 +48,91 @@
         }
         </script>
     </head>
-    <body class="bLayout bPage">
+    <body class="bLayout bPage bMCPage">
         <div class="bPage__eWrapper">
             <header class="bPage__eHeader">
                 <img src="/static/images/ava.png" class="bNavi__eAvatar"><h1 class="bPage__eTitle">Московские Закоулки</h1><span>&nbsp;/&nbsp;</span><a href="/">На&nbsp;главную</a>
             </header>
             <article class="bPage__eArticle">
+                <p class="bPage__eParagraph">Разные необычные места Москвы, в которых не обязан побывать каждый Москвич</p>
                 <div id="YMapsID" class="bMCPage__eMap" style="width: 100%; height: 450px;"></div>
 
                 <div class="bMCPage__eList">
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-06-05-25"><img src="http://nim579.ru/img/mz/vvedenskoye.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-06-05-25">Введенское кладбище</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-06-05-25">Введенское кладбище</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2012-01-19-73"><img src="http://nim579.ru/_bl/0/s58319106.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2012-01-19-73">Деривационный канал</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2012-01-19-73">Деривационный канал</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2012-05-06-19"><img src="http://nim579.ru/img/mz/zhivopisny_most.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2012-05-06-19">Живописный мост</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2012-05-06-19">Живописный мост</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-11-28-38"><img src="http://nim579.ru/_bl/0/s05854892.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-11-28-38">Набережная Нескучного сада</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-11-28-38">Набережная Нескучного сада</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2012-05-07-89"><img src="http://nim579.ru/img/mz/kuzminki.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2012-05-07-89">Кузьминки</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2012-05-07-89">Кузьминки</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2012-07-02-92"><img src="http://nim579.ru/img/mz/novospas.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2012-05-06-88">Новоспасский пруд<br>и монастырь</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2012-05-06-88">Новоспасский пруд<br>и монастырь</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2012-05-06-29"><img src="http://nim579.ru/img/mz/silver_bor.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2012-05-06-29">Серебряный бор</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2012-05-06-29">Серебряный бор</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-07-29-33"><img src="http://nim579.ru/_bl/0/s15409.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-07-29-33">Строгинская пойма</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-07-29-33">Строгинская пойма</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-06-05-26"><img src="http://nim579.ru/img/mz/metro_bridge_vg.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-06-05-26">Метромост на<br>Воробьевых горах</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-06-05-26">Метромост на<br>Воробьевых горах</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-06-09-30"><img src="http://nim579.ru/_bl/0/s28172.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-06-09-30">Ходынское поле</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-06-09-30">Ходынское поле</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-06-09-31"><img src="http://nim579.ru/_bl/0/s71246.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-06-09-31">Ховринская заброшенная<br>больница</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-06-09-31">Ховринская заброшенная<br>больница</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-06-04-18"><img src="http://nim579.ru/img/blog/tatarovskoe-golf.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-06-04-18">Татаровское озеро</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-06-04-18">Татаровское озеро</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2012-05-06-88"><img src="http://nim579.ru/img/mz/nogatino.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2012-05-06-88">Нагатинская пойма</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2012-05-06-88">Нагатинская пойма</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-06-04-22"><img src="http://nim579.ru/_bl/0/s77859.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-06-04-22">Парк имени 50-летия Октября</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-06-04-22">Парк имени 50-летия Октября</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-06-04-21"><img src="http://img-fotki.yandex.ru/get/3001/nim579.1/0_331c_31c628c0_M" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-06-04-21">Заброшенные инфекционные<br>корпуса</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-06-04-21">Заброшенные инфекционные<br>корпуса</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-06-04-20"><img src="http://img-fotki.yandex.ru/get/3006/nim579.1/0_3315_47fabf19_M" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-06-04-20">Петровский путевой дворец</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-06-04-20">Петровский путевой дворец</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-06-05-27"><img src="http://nim579.ucoz.ru/_ph/7/434009580.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-06-05-27">Синий Зуб</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-06-05-27">Синий Зуб</a></span>
                     </div>
                     <div class="bMCPage__eItem">
                         <a class="mNoline" href="http://nim579.ru/blog/2009-06-04-23"><img src="http://img-fotki.yandex.ru/get/3303/nim579.2/0_3342_4bc37b55_M.jpg" class="bMCPage__eItemImg" alt="" /></a>
-                        <span class="bMCPage__eItemText"><a class="mNoline" href="http://nim579.ru/blog/2009-06-04-23">Долина реки Сетунь</a></span>
+                        <span class="bMCPage__eItemText"><a href="http://nim579.ru/blog/2009-06-04-23">Долина реки Сетунь</a></span>
                     </div>
+                    <div class="bMCPage__eItem">&nbsp;</div>
+                    <div class="bMCPage__eItem">&nbsp;</div>
+                    <div class="bMCPage__eItem">&nbsp;</div>
                 </div>
             </article>
         </div>
