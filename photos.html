@@ -15,7 +15,12 @@
     <body class="bLayout bPage bPhotoPage">
         <div class="bPage__eWrapper">
             <header class="bPage__eHeader">
-                <img src="/static/images/ava.png" class="bNavi__eAvatar"><h1 class="bPage__eTitle">Фотографии</h1><span>&nbsp;/&nbsp;</span><a href="/">На&nbsp;главную</a>
+                <span class="bPage__eHeaderItem">
+                    <img src="/static/images/ava.png" class="bNavi__eAvatar">
+                </span>
+                <span class="bPage__eHeaderItem">
+                    <h1 class="bPage__eTitle">Фотографии</h1><span>&nbsp;/&nbsp;</span><a href="/">На&nbsp;главную</a>
+                </span>
             </header>
             <article class="bPage__eArticle">
                 <noscript>Фотографии получится посмотреть только с включенным JavaScript. Нет ничего зазорного, в том, чтобы включить его.</noscript>
@@ -26,14 +31,12 @@
         </div>
         <footer class="bFooter bPage__eFooter">
             <div class="bFooter__eWrapper">
-                <nobr><span class="bFooter__eItem">E-mail: <a href="mailto:i.am@nick-iv.me">i.am@nick-iv.me</a></span></nobr>
-                <nobr><span class="bFooter__eItem">Mobile: <i>+7 916 976-36-18</i></span></nobr>
-                <nobr>
-                    <span class="bFooter__eItem"><a class="mNoline" href="http://vk.com/nim579"><i class="bIcons mVkontakte"></i></a></span>
-                    <span class="bFooter__eItem"><a class="mNoline" href="http://www.facebook.com/nim579"><i class="bIcons mFacebook"></i></a></span>
-                    <span class="bFooter__eItem"><a class="mNoline" href="http://instagram.com/nim579"><i class="bIcons mInstagram"></i></a></span>
-                    <span class="bFooter__eItem"><a class="mNoline" href="http://github.com/nim579"><i class="bIcons mGithub"></i></a></span>
-                </nobr>
+                <ul class="bFooter__eNav">
+                    <li class="bFooter__eNavItem"><a href="/">Главная</a></li>
+                    <li class="bFooter__eNavItem"><a href="/about.html">Обо мне</a></li>
+                    <li class="bFooter__eNavItem"><a href="http://dev.nim579.ru/">Работы</a></li>
+                    <li class="bFooter__eNavItem"><a href="/moscow-crannies.html">Московские&nbsp;закоулки</a></li>
+                </ui>
             </div>
         </footer>
         <!-- Yandex.Metrika counter -->

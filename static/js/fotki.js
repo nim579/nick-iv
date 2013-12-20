@@ -95,7 +95,7 @@
       return this.listenTo(this.model, 'albumSelected', this.renderTitle);
     },
     render: function() {
-      var album, albums, albumsHTML, link, maxWidth, _i, _len;
+      var album, albums, albumsHTML, i, link, maxWidth, _i, _j, _len;
       albums = this.model.toJSON();
       albumsHTML = [];
       for (_i = 0, _len = albums.length; _i < _len; _i++) {
@@ -103,6 +103,9 @@
         maxWidth = (150 * album.img.S.width) / album.img.S.height;
         link = '#albums/' + album.id.replace(/^.*:(\w+)$/, '$1');
         albumsHTML.push(("<div class=\"bPhotoPage__eAlbumsItem jsOpenAlbum\" id=\"" + album.id + "\" style=\"max-width: " + maxWidth + "px\">") + ("<a href=\"" + link + "\" class=\"mNoline\"><img class=\"bPhotoPage__eAlbumsImg\" src=\"" + album.img.M.href + "\" alt=\"\"></a>") + ("<span class=\"bPhotoPage__eAlbumsText\"><a href=\"" + link + "\">" + album.title + "</a></span>") + "</div>");
+      }
+      for (i = _j = 0; _j <= 6; i = ++_j) {
+        albumsHTML.push('<div class=\"bPhotoPage__eAlbumsItem mEmpty\"></div>');
       }
       return this.$el.html(albumsHTML.join(' '));
     },

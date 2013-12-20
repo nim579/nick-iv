@@ -15,8 +15,11 @@
         min-width: 720px;
         width: 70%;
         display: block;
-        margin: 0 auto 20px;
+        margin: 10px auto 25px;
         padding: 0 20px;
+    }
+    &__eHeaderItem {
+        display: table-cell;
     }
     &__eArticle {
         max-width: 1400px;
@@ -30,6 +33,7 @@
     }
     &__eTitle {
         display: inline-block;
+        margin: 0;
     }
 
     &__eParagraph {
@@ -72,6 +76,11 @@
         display: inline-block;
         margin: 0 20px 40px 20px;
         vertical-align: top;
+        &.mEmpty {
+            width: 200px;
+            height: 0;
+            margin-bottom: 0;
+        }
     }
     &__eAlbumsImg {
         height: 150px;

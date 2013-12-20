@@ -10,15 +10,18 @@ a.mNoline{text-decoration:underline;border-bottom:0;outline:0}
 .bFooter{max-width:900px;min-width:300px;width:70%;margin:0 auto;border-top:1px solid #999;padding:15px 0 20px 0;color:#777;text-align:center;overflow:hidden}.bFooter__eWrapper{display:inline-block;width:100%;margin-left:-15px;line-height:30px}
 .bFooter__eItem{display:inline-block;padding:0 0 0 15px}
 .bFooter__eItemImg{position:relative;bottom:-0.18em;border:0}
+.bFooter__eNav{display:inline-block;list-style-type:none;margin:0;padding:0 0 0 15px}
+.bFooter__eNavItem{display:inline-block;font-size:0.95em;margin-left:15px;opacity:0.7}
 .bHeader__eTitle{font-size:2.5em;margin:20px 0 0 0;color:#272759}
 .bHeader__eMega{font-size:15em;line-height:0.9em;text-shadow:0 0 60px rgba(77,95,164,0.6)}
 .bHeader__eDescr{max-width:650px;margin:0 auto;padding:0 20px}
 .bHeader__eAvatar{display:inline-block;width:200px;height:200px;margin-top:5px;border:5px solid #272759;border-radius:110px;box-shadow:0 0 20px rgba(255,255,255,0.4) inset,0 0 150px 20px rgba(77,95,164,0.6);background:#272759 url('/static/images/ava.png') no-repeat}
 .bPage__eWrapper{min-height:100%;position:relative;vertical-align:baseline;overflow:hidden}
 .bPage__eFooter{margin-top:-66px;position:relative;vertical-align:baseline}
-.bPage__eHeader{max-width:1400px;min-width:720px;width:70%;display:block;margin:0 auto 20px;padding:0 20px}
+.bPage__eHeader{max-width:1400px;min-width:720px;width:70%;display:block;margin:10px auto 25px;padding:0 20px}
+.bPage__eHeaderItem{display:table-cell}
 .bPage__eArticle{max-width:1400px;min-width:720px;width:70%;display:block;margin:0 auto 30px;text-align:center;vertical-align:top;padding:0 20px 66px 20px}
-.bPage__eTitle{display:inline-block}
+.bPage__eTitle{display:inline-block;margin:0}
 .bPage__eParagraph{text-align:left}
 .bPhotoPage__eHiddenPhoto{width:200px;height:0;margin:0 20px}
 .bPhotoPage__ePhotos{margin:0 -20px}
@@ -26,7 +29,7 @@ a.mNoline{text-decoration:underline;border-bottom:0;outline:0}
 .bPhotoPage__ePhotosLink{text-decoration:0;border:0 !important;display:block;margin:20px;cursor:pointer;vertical-align:bottom}
 .bPhotoPage__ePhotosImg{display:inline-block;width:200px;height:auto}
 .bPhotoPage__eAlbums{text-align:justify;margin:0 -20px}
-.bPhotoPage__eAlbumsItem{display:inline-block;margin:0 20px 40px 20px;vertical-align:top}
+.bPhotoPage__eAlbumsItem{display:inline-block;margin:0 20px 40px 20px;vertical-align:top}.bPhotoPage__eAlbumsItem.mEmpty{width:200px;height:0;margin-bottom:0}
 .bPhotoPage__eAlbumsImg{height:150px;border:0;cursor:pointer}
 .bPhotoPage__eAlbumsText{display:block;text-align:left}
 .bPhotoPage__eAlbum{display:inline-block;margin:0 20px;text-align:left}

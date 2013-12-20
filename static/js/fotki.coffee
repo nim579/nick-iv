@@ -95,6 +95,9 @@ fotki.views.albums = Backbone.View.extend
                 "<span class=\"bPhotoPage__eAlbumsText\"><a href=\"#{link}\">#{album.title}</a></span>" +
                 "</div>"
 
+        for i in [0..6]
+            albumsHTML.push '<div class=\"bPhotoPage__eAlbumsItem mEmpty\"></div>'
+
         @$el.html albumsHTML.join(' ')
 
     renderTitle: ->
