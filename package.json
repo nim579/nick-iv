@@ -12,7 +12,6 @@
   },
   "author": "",
   "license": "BSD",
-  "gitHead": "5eb7922d64c098ee5ededad3cb8f719ad8a68104",
   "readmeFilename": "README.md",
   "devDependencies": {
     "grunt": "~0.4.1",
