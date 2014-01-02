@@ -5,18 +5,23 @@ function init () {
         center: [55.743502, 37.614752],
         zoom: 10,
         type: "yandex#map",
-        controls: ['zoomControl', 'typeSelector', 'geolocationControl', 'fullscreenControl', 'rulerControl']
+        controls: ['zoomControl', 'routeEditor', 'geolocationControl', 'fullscreenControl', 'rulerControl']
         // behaviors: ["default"]
     });
+
+    var typeSelector = new ymaps.control.TypeSelector(['yandex#map', 'yandex#satellite', 'yandex#hybrid', 'yandex#publicMap']);
+    myMap.controls.add(typeSelector);
+
+    var searchControl = new ymaps.control.SearchControl({options: {size: 'small'}});
+    myMap.controls.add(searchControl);
 
     var randomX = 37396571 + Math.floor(Math.random() * (37830531 - 37396571 + 1));
     var randomY = 55587353 + Math.floor(Math.random() * (55901860 - 55587353 + 1));
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [randomY / 1000000, randomX / 1000000]},
         properties: {
-            balloonContentHeader: 'Пока здесь ничего нет',
-            balloonContentBody: 'Однако, вы&nbsp;можете <a href="mailto:mz@nim579.ru">поспособствовать</a> добавлению этого места в&nbsp;&laquo;Московские Закоулки&raquo;',
-            // balloonContentFooter: 'tests'
+            balloonContentHeader: 'Здесь пока ничего нет',
+            balloonContentBody: 'Однако, вы&nbsp;можете <a href="mailto:mz@nim579.ru">поспособствовать</a> добавлению этого места в&nbsp;&laquo;Московские Закоулки&raquo;'
         }
     },
     {preset: "islands#icon", iconColor: '#a5260a'}));
@@ -221,8 +226,5 @@ function init () {
         }
     },
     {preset: "islands#dotIcon", iconColor: '#3b5998'}));
-
-    var typeSelector = new ymaps.control.TypeSelector(['yandex#publicMapHybrid']);
-    ypeSelector.expand()
 
 }
