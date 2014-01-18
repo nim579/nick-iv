@@ -161,16 +161,36 @@
         margin: 0 20px 40px 20px;
         vertical-align: top;
         width: 220px;
+        &.mEmpty {
+            margin: 0 20px 0 20px;
+        }
     }
     &__eItemImg {
         width: 220px;
         border: 0;
+        vertical-align: top;
     }
     &__eItemText {
         display: block;
         max-width: 220px;
         cursor: pointer;
         text-align: left;
+        &.mHeadery {
+            text-align: center;
+            cursor: auto;
+            padding-top: 10px;
+            display: block;
+        }
+    }
+    &__eImage {
+        display: block;
+        margin: 0 auto 30px;
+        max-width: 1400px;
+        min-width: 720px;
+        text-align: left;
+        vertical-align: middle;
+        width: 70%;
+        padding: 0 20px;
     }
 }
 
