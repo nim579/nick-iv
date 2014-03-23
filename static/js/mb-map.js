@@ -30,9 +30,9 @@ function init () {
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.777029, 37.445168]},
         properties: {
-            balloonContentHeader: '<a href="http://nim579.ru/blog/2012-05-06-19">Живописный мост</a>',
+            balloonContentHeader: '<a href="/moscow-backstreets/zhivopisnyj-bridge.html">Живописный мост</a>',
             balloonContentBody: 'Этот мост стал визитной карточкой города',
-            balloonContentFooter: 'старая версия статьи'
+            balloonContentFooter: 'заготовка статьи'
         }
     },
     {preset: "islands#dotIcon", iconColor: '#3b5998'}));
