@@ -70,9 +70,8 @@ function init () {
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.780071, 37.426231]},
         properties: {
-            balloonContentHeader: '<a href="http://nim579.ru/blog/2012-05-06-29">Серебряный бор</a>',
-            balloonContentBody: 'Остров очень большой, за день обойти его очень сложно.',
-            balloonContentFooter: 'старая версия статьи'
+            balloonContentHeader: '<a href="/moscow-backstreets/serebryany-bor.html">Серебряный бор</a>',
+            balloonContentBody: 'На этом острове, на западе Москвы, каждый сможет найти себе занятие для отдыха.'
         }
     },
     {preset: "islands#dotIcon", iconColor: '#3b5998'}));
@@ -92,7 +91,7 @@ function init () {
         properties: {
             balloonContentHeader: '<a href="http://nim579.ru/blog/2009-11-28-38">Набережная Нескучного сада</a>',
             balloonContentBody: 'Набережная сада, пожалуй лучшее место в Москве.',
-            balloonContentFooter: 'старая версия статьи'
+            // balloonContentFooter: 'старая версия статьи'
         }
     },
     {preset: "islands#dotIcon", iconColor: '#3b5998'}));
