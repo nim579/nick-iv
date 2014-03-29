@@ -1,0 +1,69 @@
+!!! html
+html
+    head
+        title О себе — Nick Iv
+        meta(http-equiv="content-type",  content="text/html; charset=utf-8")
+        meta(name="viewport",            content="width=device-width, initial-scale=1.0")
+        meta(property="og:title",        content="Nick Iv")
+        meta(property="og:description",  content="Фронтенд разработчик")
+        meta(property="og:url",          content="http://nick-iv.me/about.html")
+        meta(property="og:image",        content="http://nick-iv.me/static/images/smm-main.png")
+        meta(property="og:image:type",   content="image/png")
+        meta(property="og:image:width",  content="500")
+        meta(property="og:image:height", content="500")
+
+        link(rel="icon", type="image/png", href="/static/images/favicon.png")
+        link(rel="stylesheet", type="text/css", href="/static/css/global.css")
+        script(type="text/javascript", src="http://yandex.st/jquery/1.8.1/jquery.min.js")
+
+    body.bLayout.bPage.bAboutPage
+        .bPage__eWrapper
+            header.bPage__eHeader
+                span.bPage__eHeaderItem
+                    img(src="/static/images/ava.png", class="bNavi__eAvatar")
+
+                span.bPage__eHeaderItem
+                    h1.bPage__eTitle О себе
+                    span &nbsp;/&nbsp;
+                    a(href="/") На&nbsp;главную
+
+            article.bAboutPage__eArticle
+                p Меня зовут Николай. Меня можно узнать под ником nim579 и&nbsp;псевдонимом Nick&nbsp;Iv.
+                p Мне можно писать на&nbsp;почту <a href="mailto:nick@nick-iv.me">nick@nick-iv.me</a>, и&nbsp;найти в&nbsp;<a href="https://vk.com/nim579">Вконтакте</a>, <a href="https://www.facebook.com/nim579">Фейсбуке</a>, <a href="http://instagram.com/nim579">Инстаграме</a>, <a href="https://foursquare.com/nim579">Форсквере</a>, <a href="https://twitter.com/nim579">Твиттере</a>, <a href="https://github.com/nim579">Гитхабе</a>, <a href="http://nivanushkin.moikrug.ru/">Моем круге</a> и еще длинном-длинном списке.
+                p Я&nbsp;профессиональный фронтенд разработчик.<br>Сейчас я&nbsp;делаю <a href="https://ayyo.ru">Аййо</a>, один из&nbsp;проектов компании <a href="http://inn.ru">Иннова</a>. И&nbsp;создаю маленький сервис для копирайтеров&nbsp;&mdash; <a href="http://stopslov.net">Стоп-слов</a>.
+
+            a(href="https://ayyo.ru/")
+                img.bAboutPage__eImage(src="/static/images/about-ayyo.jpg", alt="")
+
+            article.bAboutPage__eArticle
+                p Я&nbsp;постоянно использую новейшие технологии и&nbsp;методики разработки, стремлюсь делать качественные и&nbsp;удобные продукты. По&nbsp;мимо программирования, я&nbsp;разбираюсь в&nbsp;дизайне интерфейсов и&nbsp;типографике. Множество моих работ можно найти на <a href="https://github.com/nim579">GitHub</a>.
+                p Маленьких список технологий, которые я&nbsp;использую:
+
+            .bAboutPage__eImage.mMini
+                img.bAboutPage__eImageInto(src="/static/images/about-tech.png", alt="")
+
+            article.bAboutPage__eArticle
+                p У меня есть небольшой фото-проект, который называется Московские закоулки. В нем собрано множество разных необычных мест Москвы, с качественными фотографиями и рассказами про эти места.
+
+            a(href="/moscow-backstreets/")
+                img.bAboutPage__eImage(src="/static/images/about-mb.jpg", alt="")
+
+            article.bAboutPage__eArticle.mLast
+                p Раньше у сайта была <a href="http://nim579.ru">старая версия</a>, там всё плохо, но иногда можно найти что-то интересное.
+
+        footer.bFooter.bPage__eFooter
+            .bFooter__eWrapper
+                ul.bFooter__eNav
+                    li.bFooter__eNavItem
+                        a(href="/") Главная
+
+                    li.bFooter__eNavItem
+                        a(href="http://dev.nim579.ru/") Работы
+
+                    li.bFooter__eNavItem
+                        a(href="/photos.html") Фотографии
+
+                    li.bFooter__eNavItem
+                        a(href="/moscow-backstreets/") Московские&nbsp;закоулки
+        
+        include includes/analytics

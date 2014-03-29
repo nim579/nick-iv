@@ -1,30 +1,30 @@
-ymaps.ready(init);
-
-function init () {
-    var myMap = new ymaps.Map("YMapsID", {
-        center: [55.743502, 37.614752],
-        zoom: 10,
-        type: "yandex#map",
+init = ->
+    myMap = new ymaps.Map "YMapsID",
+        center: [55.743502, 37.614752]
+        zoom: 10
+        type: "yandex#map"
         controls: ['zoomControl', 'routeEditor', 'geolocationControl', 'fullscreenControl', 'rulerControl']
-        // behaviors: ["default"]
-    });
+        # behaviors: ["default"]
 
-    var typeSelector = new ymaps.control.TypeSelector(['yandex#map', 'yandex#satellite', 'yandex#hybrid', 'yandex#publicMap']);
-    myMap.controls.add(typeSelector);
+    typeSelector = new ymaps.control.TypeSelector ['yandex#map', 'yandex#satellite', 'yandex#hybrid', 'yandex#publicMap']
+    myMap.controls.add typeSelector
 
-    var searchControl = new ymaps.control.SearchControl({options: {size: 'small'}});
-    myMap.controls.add(searchControl);
+    searchControl = new ymaps.control.SearchControl options: {size: 'small'}
+    myMap.controls.add searchControl
 
-    var randomX = 37396571 + Math.floor(Math.random() * (37830531 - 37396571 + 1));
-    var randomY = 55587353 + Math.floor(Math.random() * (55901860 - 55587353 + 1));
-    myMap.geoObjects.add(new ymaps.GeoObject({
-        geometry: {type: "Point", coordinates: [randomY / 1000000, randomX / 1000000]},
-        properties: {
+    randomX = 37396571 + Math.floor Math.random() * (37830531 - 37396571 + 1)
+    randomY = 55587353 + Math.floor Math.random() * (55901860 - 55587353 + 1)
+
+    myMap.geoObjects.add new ymaps.GeoObject(
+        geometry: 
+        	type: "Point"
+        	coordinates: [randomY / 1000000, randomX / 1000000]
+
+        properties:
             balloonContentHeader: 'Здесь пока ничего нет',
             balloonContentBody: 'Однако, вы&nbsp;можете <a href="mailto:mz@nim579.ru">поспособствовать</a> добавлению этого места в&nbsp;&laquo;Московские Закоулки&raquo;'
-        }
-    },
-    {preset: "islands#icon", iconColor: '#a5260a'}));
+
+    , {preset: "islands#icon", iconColor: '#a5260a'})
 
 
     myMap.geoObjects.add(new ymaps.GeoObject({
@@ -35,7 +35,7 @@ function init () {
             balloonContentFooter: 'заготовка статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
     
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.731521, 37.654318]},
@@ -45,7 +45,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.691631, 37.786242]},
@@ -55,7 +55,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.69357, 37.673976]},
@@ -65,7 +65,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.780071, 37.426231]},
@@ -74,7 +74,7 @@ function init () {
             balloonContentBody: 'На этом острове, на западе Москвы, каждый сможет найти себе занятие для отдыха.'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.83643, 37.437813]},
@@ -84,17 +84,17 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.724266, 37.593659]},
         properties: {
             balloonContentHeader: '<a href="http://nim579.ru/blog/2009-11-28-38">Набережная Нескучного сада</a>',
             balloonContentBody: 'Набережная сада, пожалуй лучшее место в Москве.',
-            // balloonContentFooter: 'старая версия статьи'
+            # balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.797341, 37.429851]},
@@ -104,7 +104,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.86258, 37.490209]},
@@ -114,7 +114,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.792453, 37.533778]},
@@ -124,7 +124,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.792453, 37.533778]},
@@ -134,7 +134,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.66733, 37.478495]},
@@ -144,7 +144,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.710337, 37.559254]},
@@ -154,7 +154,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.769155, 37.706883]},
@@ -164,7 +164,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.714713, 37.467554]},
@@ -174,7 +174,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.714713, 37.467554]},
@@ -184,7 +184,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.681311, 37.503621]},
@@ -194,7 +194,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.788926, 37.694959]},
@@ -204,7 +204,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.793278, 37.552624]},
@@ -214,7 +214,7 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
     myMap.geoObjects.add(new ymaps.GeoObject({
         geometry: {type: "Point", coordinates: [55.762318, 37.451007]},
@@ -224,6 +224,6 @@ function init () {
             balloonContentFooter: 'старая версия статьи'
         }
     },
-    {preset: "islands#dotIcon", iconColor: '#3b5998'}));
+    {preset: "islands#dotIcon", iconColor: '#3b5998'}))
 
-}
+ymaps.ready init

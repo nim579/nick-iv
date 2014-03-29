@@ -23,6 +23,9 @@ fotki.models.albums = Backbone.Collection.extend
         return "http://api-fotki.yandex.ru/api/users/#{fotki.preferences.author}/albums/?format=json&callback=?"
 
     parse: (data)->
+        data.entries = _.reject data.entries, (entry)->
+            return entry.protected
+
         _.map data.entries, (entry)->
             entry.img.M =
                 href: entry.img.S.href.replace(/_S$/, '_M')
