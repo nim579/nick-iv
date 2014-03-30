@@ -76,7 +76,7 @@ module.exports = (grunt)->
                 tasks: 'less'
 
             pages:
-                files: ['src/pages/**/*.jade']
+                files: ['src/**/*.jade']
                 tasks: 'jade:pages'
 
             coffee:
