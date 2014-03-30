@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/RjgO7rYTmqiVp7vzi-Q5UbO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: normal;
+    src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/xjAJXh38I15wypJXxuGMBkbeuvGrcRTTBH456c-a4yI.woff) format('woff');
+}
+
+.globalFont () {
+	font-weight: normal;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Tahoma', sans-serif;
+}
+
+.globalFontSerif () {
+	font-weight: normal;
+	font-family: 'PT Serif', 'Times', serif;
+}
+
+.transition (@property: all, @duration: 0.4s, @delay: 0) {
+	-webkit-transition-property: @property;
+	   -moz-transition-property: @property;
+	    -ms-transition-property: @property;
+	     -o-transition-property: @property;
+	        transition-property: @property;
+
+    -webkit-transition-duration: @duration;
+	   -moz-transition-duration: @duration;
+	    -ms-transition-duration: @duration;
+	     -o-transition-duration: @duration;
+	        transition-duration: @duration;
+
+    -webkit-transition-delay: @delay;
+	   -moz-transition-delay: @delay;
+	    -ms-transition-delay: @delay;
+	     -o-transition-delay: @delay;
+	        transition-delay: @delay;
+}

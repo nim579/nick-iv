@@ -83,6 +83,16 @@ module.exports = (grunt)->
                 files: ['src/static/coffee/**/*.coffee']
                 tasks: 'coffee:frontend'
 
+        srv:
+            dev:
+                root: './src'
+                logs: true
+                404: './src/404.html'
+
+            build:
+                root: './build'
+                404: './build/404.html'
+
 
     path = require('path')
     less = require('less')
@@ -91,6 +101,7 @@ module.exports = (grunt)->
     grunt.loadNpmTasks 'grunt-contrib-watch'
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-copy'
+    grunt.loadNpmTasks 'node-srv'
 
 
     grunt.registerTask 'default', 'Default task', ->
