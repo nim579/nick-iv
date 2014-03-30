@@ -1,17 +1,6 @@
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/RjgO7rYTmqiVp7vzi-Q5UbO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
-}
-@font-face {
-    font-family: 'Open Sans';
-    font-style: italic;
-    font-weight: 400;
-    src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/xjAJXh38I15wypJXxuGMBkbeuvGrcRTTBH456c-a4yI.woff) format('woff');
-}
 html {
     height: 100%;
+    .globalFont();
 }
 a:active, a:link, a:visited {
     color: #484880;
@@ -35,8 +24,7 @@ a.mNoline {
     margin: 0;
     background-color: #F1F0F0;
     font-size: 0.85em;
-    font-weight: normal;
-    font-family: 'Open Sans', sans-serif;
+    .globalFont();
     color: #3a3a3a;
     height: 100%;
 

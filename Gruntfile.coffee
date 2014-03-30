@@ -76,12 +76,22 @@ module.exports = (grunt)->
                 tasks: 'less'
 
             pages:
-                files: ['src/pages/**/*.jade']
+                files: ['src/**/*.jade']
                 tasks: 'jade:pages'
 
             coffee:
                 files: ['src/static/coffee/**/*.coffee']
                 tasks: 'coffee:frontend'
+
+        srv:
+            dev:
+                root: './src'
+                logs: true
+                404: './src/404.html'
+
+            build:
+                root: './build'
+                404: './build/404.html'
 
 
     path = require('path')
@@ -91,6 +101,7 @@ module.exports = (grunt)->
     grunt.loadNpmTasks 'grunt-contrib-watch'
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-copy'
+    grunt.loadNpmTasks 'node-srv'
 
 
     grunt.registerTask 'default', 'Default task', ->

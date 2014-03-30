@@ -12,12 +12,11 @@ class window.slider
         @$slider.addClass 'mSliderActive'
 
     addControls: ->
-        @$slider.append '<span class="bSlider__eArrowLeft"></span>'
-        @$slider.append '<span class="bSlider__eArrowRight"></span>'
-        @$slider.append "<span class=\"bSlider__ePages\">#{@currentFigure + 1}/#{@length}</span>"
+        @$slider.prepend "<div class=\"bSlider__eControls\"><span class=\"bSlider__eArrowLeft\"></span><span class=\"bSlider__ePages\">#{@currentFigure + 1}/#{@length}</span><span class=\"bSlider__eArrowRight\"></span></div>"
 
         $('.bSlider__eArrowLeft', @$slider).bind 'click', $.proxy(@goLeft, @)
         $('.bSlider__eArrowRight', @$slider).bind 'click', $.proxy(@goRight, @)
+        $('.jsSliderImg', @$slider).bind 'click', $.proxy(@goRight, @)
 
         @updateUIState()
 
