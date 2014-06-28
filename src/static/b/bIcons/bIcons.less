@@ -1,21 +1,80 @@
 .bIcons {
-	display: inline-block;
-	width: 17px;
-	height: 17px;
-	position: relative;
-	border: 0;
-	bottom: -0.18em;
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    position: relative;
+    border: 0;
+    bottom: -0.18em;
 
-	&.mFacebook {
-		background: url('/static/b/bIcons/fb.png') no-repeat;
-	}
-	&.mInstagram {
-		background: url('/static/b/bIcons/instagram.png') no-repeat;
-	}
-	&.mVkontakte {
-		background: url('/static/b/bIcons/vk.png') no-repeat;
-	}
-	&.mGithub {
-		background: url('/static/b/bIcons/gh.png') no-repeat;
-	}
+    &.mFacebook {
+        background: url('/static/b/bIcons/fb.svg') no-repeat;
+        background-size: 17px 17px;
+    }
+    &.mInstagram {
+        background: url('/static/b/bIcons/instagram.svg') no-repeat;
+        background-size: 17px 17px;
+    }
+    &.mVkontakte {
+        background: url('/static/b/bIcons/vk.svg') no-repeat;
+        background-size: 17px 17px;
+    }
+    &.mGithub {
+        background: url('/static/b/bIcons/gh.svg') no-repeat;
+        background-size: 17px 17px;
+    }
+
+    &__eMap {
+        background: #fff;
+        border-radius: 0.5em;
+        bottom: 1em;
+        font-size: 0.8em;
+        left: 1em;
+        line-height: 1.5em;
+        padding: 0.2em 0.5em;
+        position: absolute;
+        opacity: 0.8;
+        cursor: pointer;
+        z-index: 100;
+
+        &.mGeo:before {
+            background: url("/static/b/bIcons/map.svg") no-repeat;
+            background-size: 9px;
+            content: "";
+            display: inline-block;
+            height: 13px;
+            margin-right: 0.25em;
+            position: relative;
+            top: 2px;
+            width: 0.8em;
+        }
+        &.mClose:before {
+            content: "×";
+            display: inline-block;
+            font-size: 1.1em;
+            font-weight: bold;
+            height: 13px;
+            margin-right: 0.2em;
+            position: relative;
+            width: 0.8em;
+            top: 1px;
+        }
+        &:hover {
+            opacity: 1;
+        }
+    }
+    &__eMapLink {
+        color: #484880 !important;
+        text-decoration: none;
+        border-bottom: 1px dashed #545481 !important;
+        transition: color 0.4s;
+        display: inline-block;
+        .globalFont();
+        line-height: 1em;
+
+        &:hover {
+            color: #484880;
+            text-decoration: none;
+            border-bottom: 1px dashed #545481 !important;
+        }
+    }
 }
