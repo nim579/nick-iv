@@ -33,7 +33,7 @@ module.exports = (grunt)->
                 files: [
                     expand: true
                     cwd: 'src/'
-                    src: ['static/js/**/*.js']
+                    src: ['static/js/**/*.js', 'static/js/**/*.json']
                     dest: 'build/'
                 ]
 

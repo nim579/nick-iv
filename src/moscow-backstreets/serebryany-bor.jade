@@ -15,7 +15,9 @@ html
         link(rel="icon", type="image/png", href="/favicon.png")
         link(rel="stylesheet", type="text/css", href="/static/css/global.css")
         script(type="text/javascript", src="http://yandex.st/jquery/1.8.1/jquery.min.js")
+        script(type="text/javascript", src="http://api-maps.yandex.ru/2.1.4/?load=package.full&lang=ru-RU")
         script(type="text/javascript", src="/static/js/slider.js")
+        script(type="text/javascript", src="/static/js/publ-map.js")
 
     body.bLayout.bPage
         .bPage__eWrapper
@@ -29,7 +31,7 @@ html
                     a(href="/moscow-backstreets/") Московские&nbsp;Закоулки
 
             article.bPage__eArticle.bPubl
-                .bPubl__eCaption.mPos_lower(style="background-image: url('http://img-fotki.yandex.ru/get/9751/30973186.21/0_b03a6_7591bbf0_orig');")
+                .bPubl__eCaption.mPos_lower.jsPublMap(style="background-image: url('http://img-fotki.yandex.ru/get/9751/30973186.21/0_b03a6_7591bbf0_orig');")
 
                 p.bPubl__eParagraph На&nbsp;западе Москвы расположился огромный зеленый остров-парк &laquo;Серебряный бор&raquo;. Его огромная территория включила в&nbsp;себя несоклько парков, заповедник, пляжи, оздоровительные маршруты, места для пикника, дома отдыха, коттеджи богачей и&nbsp;военкомат.
 
