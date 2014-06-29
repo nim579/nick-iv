@@ -88,20 +88,36 @@ fotki.views.albums = Backbone.View.extend
 
     render: ->
         albums = @model.toJSON()
+        @$el.empty()
 
-        albumsHTML = []
         for album in albums
             maxWidth = (150*album.img.S.width)/album.img.S.height
             link = '#albums/' + album.id.replace(/^.*:(\w+)$/, '$1')
-            albumsHTML.push "<div class=\"bPhotoPage__eAlbumsItem jsOpenAlbum\" id=\"#{album.id}\" style=\"max-width: #{maxWidth}px\">" +
-                "<a href=\"#{link}\" class=\"mNoline\"><img class=\"bPhotoPage__eAlbumsImg\" src=\"#{album.img.M.href}\" alt=\"\"></a>" +
+
+            $albumCode = $ "<div class=\"bPhotoPage__eAlbumsItem jsOpenAlbum\" id=\"#{album.id}\" style=\"max-width: #{maxWidth}px\">" +
+                "<a href=\"#{link}\" class=\"mNoline jsCover\"></a>" +
                 "<span class=\"bPhotoPage__eAlbumsText\"><a href=\"#{link}\">#{album.title}</a></span>" +
                 "</div>"
 
+            $albumCode.css 'opacity', 0
+            onload = (anbumEl)->
+                return ->
+                    anbumEl.css 'opacity': 1
+
+            img = new Image()
+            img.className = 'bPhotoPage__eAlbumsImg'
+            img.alt = ''
+            img.onload = onload $albumCode
+            img.src = album.img.M.href
+            $albumCode.find('.jsCover').html img.outerHTML
+            @$el.append $albumCode
+            @$el.append ' '
+
+        albumsHTML = []
         for i in [0..6]
             albumsHTML.push '<div class=\"bPhotoPage__eAlbumsItem mEmpty\"></div>'
 
-        @$el.html albumsHTML.join(' ')
+        @$el.append albumsHTML.join(' ')
 
     renderTitle: ->
         album = @model.selected
@@ -179,11 +195,11 @@ fotki.views.album = Backbone.View.extend
                     img.className = "bPhotoPage__ePhotosImg"
 
                     link = $("<a href=\"#{photo.img.orig.href}\"></a>").addClass('bPhotoPage__ePhotosLink jsFotka')
-                    link.html(img.outerHTML).hide()
+                    link.html(img.outerHTML).css('opacity': 0)
 
                     onload = (linkEl)->
                         return ->
-                            linkEl.show()
+                            linkEl.css('opacity': 1)
 
                     img.onload = onload(link)
                     $column.append link
