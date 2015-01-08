@@ -6,7 +6,9 @@ window.fotki =
     views: {}
     app: null
 
+
 fotki.models.album = Backbone.Model.extend({})
+
 
 fotki.models.albums = Backbone.Collection.extend
     model: fotki.models.album
@@ -61,16 +63,30 @@ fotki.models.albums = Backbone.Collection.extend
         @albumView?.removeModel()
         @trigger 'albumDeselected'
 
-fotki.models.photo = Backbone.Model.extend({})
+
+fotki.models.photo = Backbone.Model.extend
+    getPhotosForLightbox: ->
+        return links: @get('img'), title: @get('title'), description: @get('summary'), id: @get('id')
+
 
 fotki.models.photos = Backbone.Collection.extend
     model: fotki.models.photo
-
     url: ->
         return @link + '&callback=?'
 
     parse: (data)->
         return data.entries
+
+    getPhotosForLightbox: (id)->
+        unless id
+            photos = @map (model)->
+                return model.getPhotosForLightbox()
+
+            return photos
+
+        else
+            return @get(id).getPhotosForLightbox()
+
 
 fotki.views.albums = Backbone.View.extend
     id: 'albums'
@@ -121,8 +137,12 @@ fotki.views.albums = Backbone.View.extend
 
         return false
 
+
 fotki.views.album = Backbone.View.extend
     id: 'photos'
+    events:
+        "click .jsFotka": "openLightbox"
+
     initialize: ->
         @$el = $('#'+@id)
         @el = @$el[0]
@@ -174,11 +194,10 @@ fotki.views.album = Backbone.View.extend
                 for photo in group
                     img = new Image()
                     img.src = photo.img.M.href
-                    img.id = photo.id
                     img.alt = photo.img.orig.href
                     img.className = "bPhotoPage__ePhotosImg"
 
-                    link = $("<a href=\"#{photo.img.orig.href}\"></a>").addClass('bPhotoPage__ePhotosLink jsFotka')
+                    link = $("<a href=\"#{photo.img.orig.href}\" id=\"#{photo.id}\"></a>").addClass('bPhotoPage__ePhotosLink jsFotka')
                     link.html(img.outerHTML).hide()
 
                     onload = (linkEl)->
@@ -193,11 +212,23 @@ fotki.views.album = Backbone.View.extend
     unrender: ->
         @$el.empty()
 
+    openLightbox: (e)->
+        e.preventDefault()
+        selectedId = $(e.currentTarget).attr 'id'
+        photos = @model.get('collection').getPhotosForLightbox()
+
+        fotki.lightbox = new Lightbox photos
+        fotki.lightbox.openPhoto selectedId
+
+        return false
+
+
 fotki.models.router = Backbone.Router.extend
     routes:
         "": "albumsList"
         "albums": "albumsList"
         "albums/:id": "photosList"
+        "albums/:id/:photo": "photo"
 
     photosList: (album)->
         model = fotki.app.find (model)->
@@ -206,12 +237,38 @@ fotki.models.router = Backbone.Router.extend
 
         if model?
             fotki.app.select model
+
         else
             @albumsList()
+            @navigate 'albums', replace: true
 
     albumsList: ->
         fotki.app.trigger 'albumsLoaded'
         fotki.app.deselect()
+
+    photo: (albumId, photoId)->
+        album = fotki.app.find (model)->
+            exp = new RegExp(':'+albumId+'$')
+            return model.id.match(exp)?
+
+        unless album
+            @albumsList()
+            @navigate 'albums', replace: true
+
+        else
+            fotki.app.once 'albumSelected', =>
+                photo = album.get('collection').find (model)->
+                    exp = new RegExp(':'+photoId+'$')
+                    return model.id.match(exp)?
+
+                unless photo
+                    @navigate "albums/#{albumId}", replace: true
+
+                else
+                    #TODO open lightbox
+                    console.log photo
+
+            fotki.app.select album
 
 
 $ ->
