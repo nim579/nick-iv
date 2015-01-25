@@ -4,7 +4,7 @@
         "name": "Живописный мост",
         "link": "/moscow-backstreets/zhivopisnyj-bridge.html",
         "desriptoin": "Этот мост стал визитной карточкой города",
-        "note": "заготовка статьи"
+        "note": null
     },
     {
         "coordinates": [55.691631, 37.786242],
@@ -51,9 +51,9 @@
     {
         "coordinates": [55.797341, 37.429851],
         "name": "Строгинская пойма",
-        "link": "http://nim579.ru/blog/2009-07-29-33",
+        "link": "/moscow-backstreets/floodplain-of-strogino.html",
         "desriptoin": "Летом там проводят водные соревнования, плавают на лодках и занимаются виндсерфингом.",
-        "note": "старая версия статьи"
+        "note": null
     },
     {
         "coordinates": [55.86258, 37.490209],
@@ -65,9 +65,9 @@
     {
         "coordinates": [55.792453, 37.533778],
         "name": "Ходынское поле",
-        "link": "http://nim579.ru/blog/2009-06-09-30",
+        "link": "/moscow-backstreets/khodynka-field.html",
         "desriptoin": "На Ходынском поле когда-то умерло очень много народа.",
-        "note": "старая версия статьи"
+        "note": null
     },
     {
         "coordinates": [55.66733, 37.478495],
@@ -114,9 +114,9 @@
     {
         "coordinates": [55.793278, 37.552624],
         "name": "Петровский путевой дворец",
-        "link": "http://nim579.ru/blog/2009-06-04-20",
+        "link": "/moscow-backstreets/petrovsky-palace.html",
         "desriptoin": "Дворец был отреставрирован, ему возвращён его прежний статус.",
-        "note": "старая версия статьи"
+        "note": null
     },
     {
         "coordinates": [55.762318, 37.451007],
