@@ -8,7 +8,7 @@ class publMap
     loadLinks: ->
         loader = $.Deferred()
         $.ajax
-            url: '/static/js/backstreets.json'
+            url: '/static/js/backstreets-places.json'
             dataType: 'json'
             success: (data)=>
                 @backstreets = data.backstreets
