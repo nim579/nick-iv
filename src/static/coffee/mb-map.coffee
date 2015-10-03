@@ -39,8 +39,8 @@ init = ->
 
                     properties:
                         balloonContentHeader: "<a href=\"#{backstreet.link}\">#{backstreet.name}</a>",
-                        balloonContentBody: backstreet.desriptoin,
-                        balloonContentFooter: backstreet.note
+                        balloonContentBody: backstreet.description or null,
+                        balloonContentFooter: backstreet.note or null
 
                 , {preset: "islands#dotIcon", iconColor: '#3b5998'})
 
