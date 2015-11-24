@@ -20,7 +20,7 @@ fotki.models.albums = Backbone.Collection.extend
         @on 'sync', @initView
 
     url: ->
-        return "http://api-fotki.yandex.ru/api/users/#{fotki.preferences.author}/albums/?format=json&callback=?"
+        return "//api-fotki.yandex.ru/api/users/#{fotki.preferences.author}/albums/?format=json&callback=?"
 
     parse: (data)->
         data.entries = _.reject data.entries, (entry)->
