@@ -99,17 +99,17 @@ fotki.views.albums = Backbone.View.extend
                 "<span class=\"bPhotoPage__eAlbumsText\"><a href=\"#{link}\">#{album.title}</a></span>" +
                 "</div>"
 
-            $albumCode.css 'opacity', 0
+            $albumCode.addClass 'mHidden'
             onload = (anbumEl)->
                 return ->
-                    anbumEl.css 'opacity': 1
+                    anbumEl.removeClass 'mHidden'
 
             img = new Image()
             img.className = 'bPhotoPage__eAlbumsImg'
             img.alt = ''
             img.onload = onload $albumCode
             img.src = album.img.M.href
-            $albumCode.find('.jsCover').html img.outerHTML
+            $albumCode.find('.jsCover').html img
             @$el.append $albumCode
             @$el.append ' '
 
@@ -194,12 +194,14 @@ fotki.views.album = Backbone.View.extend
                     img.alt = photo.img.orig.href
                     img.className = "bPhotoPage__ePhotosImg"
 
-                    link = $("<a href=\"#{photo.img.orig.href}\"></a>").addClass('bPhotoPage__ePhotosLink jsFotka')
-                    link.html(img.outerHTML).css('opacity': 0)
+                    link = $("<a href=\"#{photo.img.orig.href}\" data-gallery=\"fotki\"></a>")
+                    .addClass('bPhotoPage__ePhotosLink jsFotka jsGallery')
+
+                    link.html(img).addClass 'mHidden'
 
                     onload = (linkEl)->
                         return ->
-                            linkEl.css('opacity': 1)
+                            linkEl.removeClass 'mHidden'
 
                     img.onload = onload(link)
                     $column.append link

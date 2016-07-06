@@ -16,7 +16,7 @@ class window.slider
 
         $('.bSlider__eArrowLeft', @$slider).bind 'click', $.proxy(@goLeft, @)
         $('.bSlider__eArrowRight', @$slider).bind 'click', $.proxy(@goRight, @)
-        $('.jsSliderImg', @$slider).bind 'click', $.proxy(@goRight, @)
+        # $('.jsSliderImg', @$slider).bind 'click', $.proxy(@goRight, @)
 
         @updateUIState()
 
