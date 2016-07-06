@@ -1,0 +1,18 @@
+include ../includes/backstreet_empty
+include ../includes/backstreet_header
+extends ../includes/backstreet_layout
+
+block vars
+    - var title = 'Деривационный канал'
+
+block head_assets
+    meta(property="og:title",        content="#{title} в проекте «Московские закоулки»")
+    meta(property="og:description",  content="Попасть на территорию можно между стоянкой и забором.")
+    meta(property="og:url",          content="https://nick-iv.me/moscow-backstreets/blue-tooth.html")
+    meta(property="og:image",        content="https://nick-iv.me/static/images/smm-mb.png")
+    meta(property="og:image:type",   content="image/png")
+    meta(property="og:image:width",  content="398")
+    meta(property="og:image:height", content="208")
+
+block article
+    +empty('//img-fotki.yandex.ru/get/9255/30973186.20/0_ac0d1_7eef46e_XL', 'А пока можно посмотреть красивые <a href="/photos.html#albums/204537">фотографии заброшеного центра</a>.')

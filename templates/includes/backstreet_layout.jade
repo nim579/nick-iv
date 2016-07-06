@@ -1,0 +1,36 @@
+include ./backstreet_header
+include ./footer_menu
+extends ./layout
+
+block vars
+    - var title = 'Место'
+
+block title
+    block title_name
+        != title
+
+    |  в проекте «Московские закоулки»
+
+block head
+    script(type="text/javascript", src="//yandex.st/jquery/1.8.1/jquery.min.js")
+    script(type="text/javascript", src="//api-maps.yandex.ru/2.1.4/?load=package.full&lang=ru-RU")
+    script(type="text/javascript", src="/static/js/slider.js")
+    script(type="text/javascript", src="/static/js/publ-map.js")
+
+    block head_assets
+
+block body
+    body.bLayout.bPage
+        .bPage__eWrapper
+            header.bPage__eHeader
+                block header
+                    +header(title)
+
+            article.bPage__eArticle.bPubl
+                block article
+
+                include ./social_buttons
+
+        block footer
+            +footerMenu('backstreets')
+            include ./analytics

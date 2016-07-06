@@ -1,0 +1,18 @@
+include ../includes/backstreet_empty
+include ../includes/backstreet_header
+extends ../includes/backstreet_layout
+
+block vars
+    - var title = 'Метромост на Воробьевых горах'
+
+block head_assets
+    meta(property="og:title",        content="#{title} в проекте «Московские закоулки»")
+    meta(property="og:description",  content="Место на крыше метро облюбовали трейсеры, неформалы и прочая молодежь.")
+    meta(property="og:url",          content="https://nick-iv.me/moscow-backstreets/metro-bridge.html")
+    meta(property="og:image",        content="https://nick-iv.me/static/images/smm-mb.png")
+    meta(property="og:image:type",   content="image/png")
+    meta(property="og:image:width",  content="398")
+    meta(property="og:image:height", content="208")
+
+block article
+    +empty('//img-fotki.yandex.ru/get/3604/nim579.a/0_bc8d_16a5dc31_XL', 'А пока можно посмотреть красивые <a href="/photos.html#albums/32927">фотографии моста</a>.')

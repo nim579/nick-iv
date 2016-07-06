@@ -1,0 +1,34 @@
+.bHeader {
+
+    &__eTitle {
+        font-size: 2.5em;
+        margin: 20px 0 0 0;
+        color: #272759;
+    }
+    &__eMega {
+        font-size: 15em;
+        line-height: 0.9em;
+        text-shadow: 0 0 60px rgba(77,95,164,0.6);
+    }
+    &__eDescr {
+        max-width: 650px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    &__eAvatar {
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        margin-top: 5px;
+        border: 5px solid #272759;
+        border-radius: 110px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) inset, 0 0 150px 20px rgba(77, 95, 164, 0.6);
+        background: #272759 url('/static/images/ava-main.jpg') no-repeat;
+    }
+
+    @media screen and (max-width: 450px) {
+        &__eMega {
+            font-size: 10em;
+        }
+    }
+}

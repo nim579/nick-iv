@@ -1,0 +1,72 @@
+.bSlider {
+    position: relative;
+    margin: 30px 0;
+    &__eWrapper {
+        position: relative;
+        .transition(padding, 0.3s);
+        width: 100%;
+    }
+    &__eControls {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    @sliderArrowWidth: 18px;
+    @sliderArrowHeight: @sliderArrowWidth;
+    &__eArrowLeft {
+        background: url("images/galleryArrows.png") no-repeat left top transparent;
+        cursor: pointer;
+        display: inline-block;
+        height: @sliderArrowHeight;
+        width: @sliderArrowWidth;
+        .transition(opacity);
+        &.mDisabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+    }
+    &__eArrowRight {
+        background: url("images/galleryArrows.png") no-repeat right top transparent;
+        cursor: pointer;
+        display: inline-block;
+        height: @sliderArrowHeight;
+        width: @sliderArrowWidth;
+        .transition(opacity);
+        &.mDisabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+    }
+    &__ePages {
+        display: inline-block;
+        vertical-align: top;
+        padding: 0 10px;
+        line-height: @sliderArrowWidth;
+        text-align: center;
+        font-size: 0.9em;
+        .globalFont();
+    }
+
+    @media screen and (max-width: 760px) {
+        margin: 30px 10px;
+
+        &__eArrowLeft {
+            background-size: 40px auto;
+            height: 18px;
+            left: auto;
+            margin-top: -9px;
+            right: 100%;
+            top: 50%;
+            width: 18px;
+        }
+        &__eArrowRight {
+            background-size: 40px auto;
+            height: 18px;
+            right: auto;
+            margin-top: -9px;
+            left: 100%;
+            top: 50%;
+            width: 18px;
+        }
+    }
+}

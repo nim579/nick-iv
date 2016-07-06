@@ -1,0 +1,23 @@
+mixin footerMenu(current)
+    footer.bFooter.bPage__eFooter
+            .bFooter__eWrapper
+                ul.bFooter__eNav
+                    if current != 'main'
+                        li.bFooter__eNavItem
+                            a(href="/") Главная
+
+                    if current != 'about'
+                        li.bFooter__eNavItem
+                            a(href="/about.html") Обо мне
+
+                    if current != 'dev'
+                        li.bFooter__eNavItem
+                            a(href="/dev.html") Работы
+
+                    if current != 'photos'
+                        li.bFooter__eNavItem
+                            a(href="/photos.html") Фотографии
+
+                    if current != 'backstreets'
+                        li.bFooter__eNavItem
+                            a(href="/moscow-backstreets/") Московские&nbsp;закоулки

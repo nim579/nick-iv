@@ -1,0 +1,18 @@
+include ../includes/backstreet_empty
+include ../includes/backstreet_header
+extends ../includes/backstreet_layout
+
+block vars
+    - var title = 'Деривационный канал'
+
+block head_assets
+    meta(property="og:title",        content="#{title} в проекте «Московские закоулки»")
+    meta(property="og:description",  content="А рядышком расположился стенд для испытания реактивных двигателей Миг-29.")
+    meta(property="og:url",          content="https://nick-iv.me/moscow-backstreets/diversion-canal.html")
+    meta(property="og:image",        content="https://nick-iv.me/static/images/smm-mb.png")
+    meta(property="og:image:type",   content="image/png")
+    meta(property="og:image:width",  content="398")
+    meta(property="og:image:height", content="208")
+
+block article
+    +empty('//img-fotki.yandex.ru/get/5201/30973186.22/0_c8ab3_3adbdb58_orig', 'Старая статья была слишком плоха, простите!')

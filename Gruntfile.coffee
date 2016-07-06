@@ -1,152 +1,92 @@
 module.exports = (grunt)->
-    
+    grunt.loadNpmTasks 'grunt-contrib-watch'
+    grunt.loadNpmTasks 'grunt-contrib-coffee'
+    grunt.loadNpmTasks 'grunt-contrib-less'
+    grunt.loadNpmTasks 'grunt-contrib-jade'
+    grunt.loadNpmTasks 'grunt-contrib-clean'
+    grunt.loadNpmTasks 'grunt-contrib-copy'
+    grunt.loadNpmTasks 'node-srv'
+
     # Project configuration.
     grunt.initConfig
-        less:
-            main:
-                file: 'src/static/less/global.less'
-                dest: 'src/static/css/global.css'
-                path: 'src/static/'
-
-        coffee:
-            frontend:
-                files: [
-                    expand: true
-                    cwd: 'src/static/coffee/'
-                    src: ['*.coffee']
-                    dest: 'src/static/js/'
-                    ext: '.js'
-                ]
-
         jade:
             pages:
                 files: [
                     expand: true
-                    cwd: 'src/'
+                    cwd: './templates'
                     src: ['./!(includes)*/*.jade', './*.jade']
-                    dest: 'src/'
+                    dest: './build'
                     ext: '.html'
                 ]
 
         copy:
-            js:
+            assets:
                 files: [
                     expand: true
-                    cwd: 'src/'
-                    src: ['static/js/**/*.js', 'static/js/**/*.json']
+                    cwd: 'assets/'
+                    src: ['images/**/*', 'other/**/*']
+                    dest: 'build/static/'
+                ,
+                    expand: true
+                    cwd: 'assets/root'
+                    src: ['**/*']
                     dest: 'build/'
                 ]
 
-            css:
-                files: [
-                    expand: true
-                    cwd: 'src/'
-                    src: ['static/css/**/*.css']
-                    dest: 'build/'
-                ]
+        less:
+            dev:
+                files:
+                    "build/static/global.css": "assets/styles/global.less"
 
-            files:
-                files: [
-                    expand: true
-                    cwd: 'src/'
-                    src: ['./!(*.html|*.jade)*','static/images/**/*', 'static/b/**/!(*.less)']
-                    dest: 'build/'
-                    filter: 'isFile'
-                ]
+        coffee:
+            scripts:
+                options:
+                    join: false
+                    sourceMap: false
+                    bare: true
 
-            pages:
-                files: [
-                    expand: true
-                    cwd: 'src/'
-                    src: ['**/*.html']
-                    dest: 'build/'
-                ]
+                expand: true
+                cwd: 'src'
+                src: ['**/*.coffee']
+                dest: './build/static/js/'
+                ext: '.js'
 
         clean:
-            build:
-                files: [
-                    expand: true
-                    cwd: 'build/'
-                    src: ['*']
-                ]
+            pages: ['./build/**/*.html']
+            assets: ['./build/static/images', './build/static/other', './build/!(*.html)']
+            less: ['./build/static/global.css']
+            coffee: ['./build/static/js']
+
+            build: ['build']
 
         watch:
-            less:
-                files: ['src/static/**/*.less']
-                tasks: 'less'
-
             pages:
-                files: ['src/**/*.jade']
-                tasks: 'jade:pages'
+                files: ['templates/**/*.jade']
+                tasks: ['clean:pages', 'jade']
+
+            assets:
+                files: ['./assets/images/**/*', './assets/other/**/*', './assets/root/**/*']
+                tasks: ['clean:assets', 'copy:assets']
+
+            less:
+                files: ['./assets/styles/**/*']
+                tasks: ['less']
 
             coffee:
-                files: ['src/static/coffee/**/*.coffee']
-                tasks: 'coffee:frontend'
+                files: ['./src/**/*.coffee']
+                tasks: ['clean:coffee', 'coffee']
 
         srv:
             dev:
-                root: './src'
-                logs: true
-                404: './src/404.html'
-
-            build:
                 root: './build'
                 404: './build/404.html'
-
-
-    path = require('path')
-    less = require('less')
-    jade = require('jade')
-
-    grunt.loadNpmTasks 'grunt-contrib-watch'
-    grunt.loadNpmTasks 'grunt-contrib-coffee'
-    grunt.loadNpmTasks 'grunt-contrib-copy'
-    grunt.loadNpmTasks 'node-srv'
 
 
     grunt.registerTask 'default', 'Default task', ->
         grunt.log.ok 'Grunt file found'
 
+    grunt.registerTask 'build', ['clean:build', 'less', 'jade', 'copy', 'coffee']
 
-    grunt.registerTask 'build', ['clean:build', 'coffee', 'less', 'jade', 'copy']
-
-
-    grunt.registerMultiTask 'less', 'Compile less files', ->
-        done = @async()
-
-        parser = new(less.Parser)(
-            paths: @data.path
-            filename: path.basename @data.file
-        )
-
-        parser.parse grunt.file.read(this.data.file), (e, tree)=>
-            if e?
-                grunt.log.error "Compile error: #{e.message} in file #{e.filename} at line #{e.line}"
-                done()
-                return
-
-            css = tree.toCSS { compress: true }
-
-            grunt.file.write @data.dest, css
-            grunt.log.ok 'LESS compiled at ' + grunt.template.today()
-            done()
-
-
-    grunt.registerMultiTask 'jade', 'Compile Jade files to HTML', ->
-        for file, i in @files
-            jadeCode = grunt.file.read file.src[0]
-            compiled = jade.compile jadeCode, {filename: file.src[0]}
-
-            html = compiled {}
-            grunt.log.ok file.src[0]
-            grunt.file.write file.dest, html
-
-
-    grunt.registerMultiTask 'clean', 'Clean folders and files', ->
-        for file, i in @files
-            grunt.file.delete file.src[0]
-
-        grunt.log.ok 'Cleaned!'
-
-
-
+    grunt.registerTask 'dev', 'Init app for developing and start server', ->
+        grunt.config.data.srv.dev.keepalive = false
+        grunt.task.run ['build', 'srv:dev', 'watch']

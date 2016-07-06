@@ -1,6 +1,5 @@
 /node_modules/
-.DS_Store
 /build/
-*.html
-*.css
-/src/static/js/*.js
+/tmp/
+*.log
+.DS_Store

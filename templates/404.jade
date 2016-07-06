@@ -1,0 +1,18 @@
+extends ./includes/layout
+
+block title
+    | 404 — Nick Iv
+
+block body
+    body.bLayout
+        .bLayout__eContainer
+            .bLayout__eTableWrapper
+                .bLayout__eTableRow
+                    .bLayout__eTableCell
+                        header
+                            h1.bHeader__eTitle.bHeader__eMega 404
+                            h1.bHeader__eTitle
+                                span.bHelpers__eNote
+                                    span Такой страницы нет</span><span class="bHelpers__eNoteText">Ок, <a href="/">на главную</a></span>
+        
+        include includes/analytics
