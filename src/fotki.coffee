@@ -50,8 +50,9 @@ fotki.models.albums = Backbone.Collection.extend
         @albumView = new fotki.views.album()
 
     select: (model)->
-        @selected = model
-        if model?
+        if model? and @selected?.id isnt model.id
+            @selected = model
+
             model.get('collection').fetch().done =>
                 @albumView?.addModel @get model
                 @trigger 'albumSelected'
@@ -88,20 +89,36 @@ fotki.views.albums = Backbone.View.extend
 
     render: ->
         albums = @model.toJSON()
+        @$el.empty()
 
-        albumsHTML = []
         for album in albums
             maxWidth = (150*album.img.S.width)/album.img.S.height
             link = '#albums/' + album.id.replace(/^.*:(\w+)$/, '$1')
-            albumsHTML.push "<div class=\"bPhotoPage__eAlbumsItem jsOpenAlbum\" id=\"#{album.id}\" style=\"max-width: #{maxWidth}px\">" +
-                "<a href=\"#{link}\" class=\"mNoline\"><img class=\"bPhotoPage__eAlbumsImg\" src=\"#{album.img.M.href}\" alt=\"\"></a>" +
+
+            $albumCode = $ "<div class=\"bPhotoPage__eAlbumsItem jsOpenAlbum\" id=\"#{album.id}\" style=\"max-width: #{maxWidth}px\">" +
+                "<a href=\"#{link}\" class=\"mNoline jsCover\"></a>" +
                 "<span class=\"bPhotoPage__eAlbumsText\"><a href=\"#{link}\">#{album.title}</a></span>" +
                 "</div>"
 
+            $albumCode.addClass 'mHidden'
+            onload = (anbumEl)->
+                return ->
+                    anbumEl.removeClass 'mHidden'
+
+            img = new Image()
+            img.className = 'bPhotoPage__eAlbumsImg'
+            img.alt = ''
+            img.onload = onload $albumCode
+            img.src = album.img.M.href
+            $albumCode.find('.jsCover').html img
+            @$el.append $albumCode
+            @$el.append ' '
+
+        albumsHTML = []
         for i in [0..6]
             albumsHTML.push '<div class=\"bPhotoPage__eAlbumsItem mEmpty\"></div>'
 
-        @$el.html albumsHTML.join(' ')
+        @$el.append albumsHTML.join(' ')
 
     renderTitle: ->
         album = @model.selected
@@ -135,7 +152,7 @@ fotki.views.album = Backbone.View.extend
 
             if newColumnsCount isnt @columnsCount
                 @columnsCount = newColumnsCount
-                @render()
+                @render true
 
         , 200
 
@@ -159,9 +176,10 @@ fotki.views.album = Backbone.View.extend
     close: ->
         @unrender()
 
-    render: ->
+    render: (fast)->
         if @model?
             photos = @model.get('collection').toJSON()
+            album  = @model.id
 
             groupedPhotos = _.values _.groupBy photos, (photo, i)=>
                 return i%@columnsCount
@@ -178,12 +196,14 @@ fotki.views.album = Backbone.View.extend
                     img.alt = photo.img.orig.href
                     img.className = "bPhotoPage__ePhotosImg"
 
-                    link = $("<a href=\"#{photo.img.orig.href}\"></a>").addClass('bPhotoPage__ePhotosLink jsFotka')
-                    link.html(img.outerHTML).hide()
+                    link = $("<a href=\"#{photo.img.orig.href}\" data-gallery=\"#{album}\" data-gallery-id=\"#{photo.id}\"></a>")
+                    .addClass('bPhotoPage__ePhotosLink jsFotka jsGallery')
+
+                    link.html(img).addClass unless fast then 'mHidden'
 
                     onload = (linkEl)->
                         return ->
-                            linkEl.show()
+                            linkEl.removeClass 'mHidden'
 
                     img.onload = onload(link)
                     $column.append link
@@ -198,18 +218,61 @@ fotki.models.router = Backbone.Router.extend
         "": "albumsList"
         "albums": "albumsList"
         "albums/:id": "photosList"
+        "albums/:id/:photo": "photosGallery"
 
     photosList: (album)->
         model = fotki.app.find (model)->
             exp = new RegExp(':'+album+'$')
             return model.id.match(exp)?
 
+        @stopListening fotki.app, 'albumSelected'
+
         if model?
             fotki.app.select model
+            window.gallery?.close()
+            delete window.gallery
+
         else
             @albumsList()
 
+    photosGallery: (album, photo)->
+        model = fotki.app.find (model)->
+            exp = new RegExp(':'+album+'$')
+            return model.id.match(exp)?
+
+        @stopListening fotki.app, 'albumSelected'
+
+        gal = ->
+            $el = $('.jsGallery').closest "[data-gallery-id$=\"#{photo}\"]"
+            return unless $el.length > 0
+
+            if window.gallery and window.gallery.name.match new RegExp(':'+album+'$')
+                window.gallery.setCurrent $el
+                window.gallery.updateImage()
+
+            else
+                window.gallery?.destroy silent: true
+                window.gallery = new Gallery $el
+
+        if fotki.app.selected
+            gal()
+            return
+
+        if model?
+            @listenTo fotki.app, 'albumSelected', gal
+
+            fotki.app.select model
+
+        else
+            @albumsList()
+
+
     albumsList: ->
+        window.gallery?.close()
+        delete window.gallery
+
+        @stopListening fotki.app, 'albumSelected'
+
         fotki.app.trigger 'albumsLoaded'
         fotki.app.deselect()
 
@@ -219,4 +282,17 @@ $ ->
     fotki.app.fetch().done ->
         fotki.router = new fotki.models.router()
         Backbone.history.start()
+
+        $(window).bind 'change.gallery', (e, ga, id)->
+            album = fotki.app.selected.id.replace(/^.*:(\w+)$/, '$1')
+            photo = id.replace(/^.*:(\w+)$/, '$1')
+
+            fotki.router.navigate "albums/#{album}/#{photo}", trigger: false, replace: false
+
+        $(window).bind 'close.gallery', (e, ga)->
+            album = fotki.app.selected.id.replace(/^.*:(\w+)$/, '$1')
+
+            fotki.router.navigate "albums/#{album}", trigger: false, replace: false
+
+            delete window.gallery
 

@@ -53,7 +53,7 @@ module.exports = (grunt)->
 
         clean:
             pages: ['./build/**/*.html']
-            assets: ['./build/static/images', './build/static/other', './build/!(*.html)']
+            assets: ['./build/static/images', './build/static/other']
             less: ['./build/static/global.css']
             coffee: ['./build/static/js']
 
@@ -63,18 +63,26 @@ module.exports = (grunt)->
             pages:
                 files: ['templates/**/*.jade']
                 tasks: ['clean:pages', 'jade']
+                options:
+                    interrupt: true
 
             assets:
                 files: ['./assets/images/**/*', './assets/other/**/*', './assets/root/**/*']
                 tasks: ['clean:assets', 'copy:assets']
+                options:
+                    interrupt: true
 
             less:
                 files: ['./assets/styles/**/*']
+                options:
+                    interrupt: true
                 tasks: ['less']
 
             coffee:
                 files: ['./src/**/*.coffee']
                 tasks: ['clean:coffee', 'coffee']
+                options:
+                    interrupt: true
 
         srv:
             dev:

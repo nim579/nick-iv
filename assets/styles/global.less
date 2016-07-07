@@ -4,6 +4,16 @@ html {
     height: 100%;
     .globalFont();
 }
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    &.mFixed {
+        overflow: hidden;
+    }
+}
 
 a:active, a:link, a:visited {
     color: #484880;
@@ -32,3 +42,4 @@ a.mNoline {
 @import 'bHelpers.less';
 @import 'bIcons.less';
 @import 'bSlider.less';
+@import 'bGallery.less';
