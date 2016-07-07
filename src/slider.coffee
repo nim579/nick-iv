@@ -37,7 +37,7 @@ class window.slider
         else
             $('.bSlider__eArrowRight', @$slider).removeClass 'mDisabled'
 
-        $('.bSlider__ePages', @$slider).text (@currentFigure + 1) + '/' + @length
+        $('.bSlider__ePages', @$slider).text (@currentFigure + 1) + ' из ' + @length
 
     goLeft: ->
         unless @currentFigure is 0
