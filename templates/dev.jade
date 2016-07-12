@@ -28,14 +28,14 @@ block body
             article.bAboutPage__eArticle
                 p <a href="http://ssn.nim.space/">Стоп-слов нет</a>&nbsp;&mdash; полезный сервис для копирайтеров и&nbsp;неравнодушных. Он&nbsp;беспощаден к&nbsp;маркетинговой шелухе, и&nbsp;шаблонным словечкам. В&nbsp;настоящее время проект заморожен.
 
-            a(href="http://ssn.nim.space/")
+            a.mNoline(href="http://ssn.nim.space/")
                 img.bAboutPage__eImage(src="/static/images/dev-stopslov.jpg", alt="")
 
             article.bAboutPage__eArticle
                 p <a href="http://nixie-clock.nim579.ru/">Nixie Clock</a>&nbsp;&mdash; небольшой фан-проект призванный нести красоту и&nbsp;антураж времен холодной войны в&nbsp;мир. Вся суть сводится к&nbsp;отображению времени в&nbsp;виде газоразрядных индикаторов и&nbsp;в&nbsp;нескольких системах счисления.
                 p Часы показывают время в&nbsp;вебе, на&nbsp;Андройде, и&nbsp;работают как скринсейвер в&nbsp;Виндоус.
 
-            a(href="http://nixie-clock.nim579.ru/")
+            a.mNoline(href="http://nixie-clock.nim579.ru/")
                 img.bAboutPage__eImage(src="/static/images/dev-nixie.jpg", alt="")
 
             article.bAboutPage__eArticle
@@ -43,14 +43,16 @@ block body
 
             .bAboutPage__eAyyo
                 .bAboutPage__eAyyoWrap
+                    .bAboutPage__eAyyoScreen
+                        iframe.bAboutPage__eAyyoFrame(src="https://www.ayyo.ru/", scrolling="auto", frameborder=0, allowfullscreen=true)
+
                     img.bAboutPage__eAyyoImage(src="/static/images/iphone.png")
-                    iframe.bAboutPage__eAyyoFrame(src="https://www.ayyo.ru/", scrolling="auto")
 
             article.bAboutPage__eArticle
                 p <a href="http://dev.nim579.ru/jqTime/">jqTime</a>&nbsp;&mdash; мощный плагин для jQuery. Показывает текущее время, или отсчитывает время до&nbsp;конца дня, или до&nbsp;заданного времени (например до&nbsp;конца пары).
                 p У&nbsp;плагина множество возможностей и&nbsp;настроек, несколько режимов работы, и&nbsp;он&nbsp;только кофе не&nbsp;варит, пока.
 
-            a(href="http://dev.nim579.ru/jqTime/")
+            a.mNoline(href="http://dev.nim579.ru/jqTime/")
                 img.bAboutPage__eImage(src="/static/images/dev-jqtime.jpg", alt="")
 
             article.bAboutPage__eArticle
@@ -66,12 +68,12 @@ block body
             article.bAboutPage__eArticle.mLast
                 h2 Бесполезные проекты
                 p <a href="http://dev.nim579.ru/navalny/">Navalny</a>&nbsp;&mdash; маленькое промо для избирательной компании Алексея Навального.
-                a(href="http://dev.nim579.ru/navalny/")
-                    img.bAboutPage__eImageInto(src="/static/images/dev-navalny.jpg", alt="")
+                a.mNoline(href="http://dev.nim579.ru/navalny/")
+                    img.bAboutPage__eImageInline(src="/static/images/dev-navalny.jpg", alt="")
 
                 p <a href="http://dev.nim579.ru/glassy-worms/">Glassy Worms</a>&nbsp;&mdash; плагин для jQuery, добавляющий стеклянных ползающих червячков в&nbsp;фон. Красиво, но&nbsp;бесполезно.
-                a(href="http://dev.nim579.ru/navalny/")
-                    img.bAboutPage__eImageInto.mLast(src="/static/images/dev-gw.jpg", alt="")
+                a.mNoline(href="http://dev.nim579.ru/navalny/")
+                    img.bAboutPage__eImageInline.mLast(src="/static/images/dev-gw.jpg", alt="")
 
         +footerMenu('dev')
         include includes/analytics
