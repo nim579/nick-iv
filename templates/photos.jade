@@ -32,11 +32,9 @@ block body
                     a(href="/") На&nbsp;главную
 
             article.bPage__eArticle
-                noscript Фотографии получится посмотреть только с включенным JavaScript. Нет ничего зазорного, в том, чтобы включить его.
-
-                .bPhotoPage__eHiddenPhoto
-                .bPhotoPage__eAlbums#albums
-                .bPhotoPage__ePhotos#photos
+                .bPhotoPage__ePreloader.jsPreloader
+                .bPhotoPage__eAlbums.jsAlbums
+                .bPhotoPage__ePhotos.jsPhotos
 
         +footerMenu('photos')
         include includes/analytics

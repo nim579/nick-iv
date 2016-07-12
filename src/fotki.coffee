@@ -53,6 +53,8 @@ fotki.models.albums = Backbone.Collection.extend
         if model? and @selected?.id isnt model.id
             @selected = model
 
+            @trigger 'albumSelectStart'
+
             model.get('collection').fetch().done =>
                 @albumView?.addModel @get model
                 @trigger 'albumSelected'
@@ -74,89 +76,70 @@ fotki.models.photos = Backbone.Collection.extend
         return data.entries
 
 fotki.views.albums = Backbone.View.extend
-    id: 'albums'
-    events:
-        "click .jsOpenAlbum": "openAlbum"
-        "click .jsCloseAlbum": "closeAlbum"
+    el: '.jsAlbums'
 
     initialize: ->
-        @$el = $('#'+@id)
-        @el = @$el[0]
-
         @listenTo @model, 'albumsLoaded', @render
         @listenTo @model, 'albumDeselected', @render
         @listenTo @model, 'albumSelected', @renderTitle
+        @listenTo @model, 'albumSelectStart', @unrender
 
     render: ->
         albums = @model.toJSON()
+        loaders = []
+
         @$el.empty()
 
-        for album in albums
-            maxWidth = (150*album.img.S.width)/album.img.S.height
+        _.each albums, (album)=>
+            loader = new $.Deferred()
             link = '#albums/' + album.id.replace(/^.*:(\w+)$/, '$1')
 
-            $albumCode = $ "<div class=\"bPhotoPage__eAlbumsItem jsOpenAlbum\" id=\"#{album.id}\" style=\"max-width: #{maxWidth}px\">" +
-                "<a href=\"#{link}\" class=\"mNoline jsCover\"></a>" +
-                "<span class=\"bPhotoPage__eAlbumsText\"><a href=\"#{link}\">#{album.title}</a></span>" +
-                "</div>"
+            $album = $ """
+                <a href="#{link}" class="bPhotoPage__eAlbumsItem jsOpenAlbum" id="#{album.id}">
+                    <span class="bPhotoPage__eAlbumsText">
+                        #{album.title}
+                        <span class="bPhotoPage__eAlbumsTextCount">(#{album.imageCount})</span>
+                    </span>
+                </a>
+            """
 
-            $albumCode.addClass 'mHidden'
-            onload = (anbumEl)->
-                return ->
-                    anbumEl.removeClass 'mHidden'
+            $album.addClass 'mHidden'
 
             img = new Image()
             img.className = 'bPhotoPage__eAlbumsImg'
             img.alt = ''
-            img.onload = onload $albumCode
+            img.onload = ->
+                w = @width
+                $album.prepend img
+                $album
+                .css 'max-width': w
+                .removeClass 'mHidden'
+
+                loader.resolve()
+
             img.src = album.img.M.href
-            $albumCode.find('.jsCover').html img
-            @$el.append $albumCode
-            @$el.append ' '
 
-        albumsHTML = []
-        for i in [0..6]
-            albumsHTML.push '<div class=\"bPhotoPage__eAlbumsItem mEmpty\"></div>'
+            @$el.append $album
+            loaders.push loader
 
-        @$el.append albumsHTML.join(' ')
+        $.when.apply $, loaders
+        .then ->
+            fotki.$preloader.hide()
+
+        for i in [0...5]
+            @$el.append '<div class="bPhotoPage__eAlbumsItem mEmpty"></div>'
 
     renderTitle: ->
         album = @model.selected
         if album?
             @$el.html "<span class=\"bPhotoPage__eAlbum\"><a href=\"#albums\" class=\"bPhotoPage__eAlbumLink jsCloseAlbum\">Альбомы</a> &rarr; <span class=\"bPhotoPage__eAlbumTitle\">#{album.get('title')}</span></span>"
 
-    openAlbum: (e)->
-        albumId = $(e.currentTarget).attr('id')
-        @model.select @model.get albumId
-        fotki.router.navigate 'albums/' + albumId.replace(/^.*:(\w+)$/, '$1')
+    unrender: ->
+        @$el.empty()
 
-        return false
-
-    closeAlbum: ->
-        @model.deselect()
-        fotki.router.navigate 'albums'
-
-        return false
 
 fotki.views.album = Backbone.View.extend
-    id: 'photos'
-    initialize: ->
-        @$el = $('#'+@id)
-        @el = @$el[0]
-        @columnWidth = $('.bPhotoPage__eHiddenPhoto').outerWidth(true)
-        @columnsCount = Math.floor @$el.width() / @columnWidth
-
-        @resize = _.debounce =>
-            @columnWidth = $('.bPhotoPage__eHiddenPhoto').outerWidth(true)
-            newColumnsCount = Math.floor @$el.width() / @columnWidth
-
-            if newColumnsCount isnt @columnsCount
-                @columnsCount = newColumnsCount
-                @render true
-
-        , 200
-
-        $(window).bind 'resize', _.bind(@resize, @)
+    el: '.jsPhotos'
 
     addModel: (model)->
         @model = model
@@ -180,35 +163,38 @@ fotki.views.album = Backbone.View.extend
         if @model?
             photos = @model.get('collection').toJSON()
             album  = @model.id
+            loaders = []
 
-            groupedPhotos = _.values _.groupBy photos, (photo, i)=>
-                return i%@columnsCount
+            @unrender()
 
-            renderData = []
-            for group in groupedPhotos
-                $column = $('<div></div>').addClass('bPhotoPage__eColumn').css {'min-width': @columnWidth, width: 100/@columnsCount+'%'}
-                renderData.push $column
+            _.each photos, (photo)=>
+                loader = new $.Deferred()
+                img = new Image()
+                img.id = photo.id
+                img.alt = photo.img.orig.href
+                img.className = "bPhotoPage__ePhotosImg"
 
-                for photo in group
-                    img = new Image()
-                    img.src = photo.img.M.href
-                    img.id = photo.id
-                    img.alt = photo.img.orig.href
-                    img.className = "bPhotoPage__ePhotosImg"
+                link = $("<a href=\"#{photo.img.orig.href}\" data-gallery=\"#{album}\" data-gallery-id=\"#{photo.id}\"></a>")
+                .addClass('bPhotoPage__ePhotosLink jsFotka jsGallery')
 
-                    link = $("<a href=\"#{photo.img.orig.href}\" data-gallery=\"#{album}\" data-gallery-id=\"#{photo.id}\"></a>")
-                    .addClass('bPhotoPage__ePhotosLink jsFotka jsGallery')
+                link.html(img).addClass unless fast then 'mHidden'
 
-                    link.html(img).addClass unless fast then 'mHidden'
+                img.onload = ->
+                    loader.resolve()
 
-                    onload = (linkEl)->
-                        return ->
-                            linkEl.removeClass 'mHidden'
+                img.src = photo.img.L.href
 
-                    img.onload = onload(link)
-                    $column.append link
+                loaders.push loader
+                @$el.append link
 
-            @$el.html renderData
+            $.when.apply $, loaders
+            .then =>
+                @$el.find('.jsFotka').each (i, el)->
+                    fotki.$preloader.hide()
+
+                    _.delay ->
+                        $(el).removeClass 'mHidden'
+                    , (700/loaders.length)*i
 
     unrender: ->
         @$el.empty()
@@ -225,6 +211,8 @@ fotki.models.router = Backbone.Router.extend
             exp = new RegExp(':'+album+'$')
             return model.id.match(exp)?
 
+        console.log 'ss', fotki.app.selected
+        fotki.$preloader.show() unless fotki.app.selected
         @stopListening fotki.app, 'albumSelected'
 
         if model?
@@ -258,6 +246,8 @@ fotki.models.router = Backbone.Router.extend
             gal()
             return
 
+        fotki.$preloader.show()
+
         if model?
             @listenTo fotki.app, 'albumSelected', gal
 
@@ -271,6 +261,7 @@ fotki.models.router = Backbone.Router.extend
         window.gallery?.close()
         delete window.gallery
 
+        fotki.$preloader.show()
         @stopListening fotki.app, 'albumSelected'
 
         fotki.app.trigger 'albumsLoaded'
@@ -278,6 +269,8 @@ fotki.models.router = Backbone.Router.extend
 
 
 $ ->
+    fotki.$preloader = $('.jsPreloader')
+
     fotki.app = new fotki.models.albums()
     fotki.app.fetch().done ->
         fotki.router = new fotki.models.router()

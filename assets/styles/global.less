@@ -15,16 +15,16 @@ body {
     }
 }
 
-a:active, a:link, a:visited {
-    color: #484880;
+a {
+    color: @linkColor;
     text-decoration: none;
-    border-bottom: 1px solid #545481;
-    transition: color 0.4s;
+    border-bottom: 1px solid fade(@linkColor, 70%);
+    transition: color 0.4s, border 0.4s;
 }
 a:hover {
-    color: #7575b6;
+    color: @linkHoverColor;
     text-decoration: none;
-    border-bottom: 1px solid #7f7fb9;
+    border-bottom: 1px solid fade(@linkHoverColor, 70%);
 }
 a.mNoline {
     text-decoration: underline;

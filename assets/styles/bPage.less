@@ -17,6 +17,7 @@
         display: block;
         margin: 10px auto 25px;
         padding: 0 20px;
+        box-sizing: border-box;
     }
     &__eHeaderItem {
         display: table-cell;
@@ -30,6 +31,7 @@
         text-align: center;
         vertical-align: top;
         padding: 0 20px 66px 20px;
+        box-sizing: border-box;
     }
     &__eTitle {
         display: inline-block;
@@ -43,7 +45,7 @@
         &__eHeader, &__eArticle {
             max-width: 680px;
             min-width: 240px;
-            width: 90%;
+            width: 100%;
         }
     }
     @media screen and (max-width: 680px) {
@@ -57,30 +59,36 @@
 }
 
 .bPhotoPage {
-    &__eHiddenPhoto {
-        width: 200px;
-        height: 0;
-        margin: 0 20px;
-    }
     &__ePhotos {
-        margin: 0 -20px;
-    }
-    &__eColumn {
-        display: inline-block;
-        vertical-align: top;
-        text-align: left;
+        display: block;
+
+        -webkit-columns: 250px auto;
+           -moz-columns: 250px auto;
+                columns: 250px auto;
+        -webkit-column-gap: 0;
+           -moz-column-gap: 0;
+                column-gap: 0;
+
+        height: 100%;
+        margin: 0 -15px;
     }
     &__ePhotosLink {
-        text-decoration: 0;
-        border: 0 !important;
-        display: block;
-        margin: 20px;
+        display: inline-block;
+        padding: 15px;
+        box-sizing: border-box;
+
+        border: 0;
+        outline: none;
+
+        text-decoration: none;
         cursor: pointer;
-        vertical-align: bottom;
-        transition: all 0.4s !important;
+
+        transition: all 0.4s;
         transform: translate3d(0,0,0);
 
         &:hover {
+            border: 0;
+            outline: none;
             transform: scale(1.05) translate3d(0,0,0);
         }
         &.mHidden {
@@ -90,40 +98,69 @@
     }
     &__ePhotosImg {
         display: inline-block;
-        width: 200px;
-        height: auto;
+        width: 100%;
+        vertical-align: top;
     }
 
     &__eAlbums {
-        text-align: justify;
+        display: flex;
+        flex-wrap: wrap;
         margin: 0 -20px;
-    }
-    &__eAlbumsItem {
-        display: inline-block;
-        margin: 0 20px 40px 20px;
-        vertical-align: top;
 
-        transition: all 0.4s;
-        transform: translate3d(0,0,0);
+        &Item {
+            display: block;
+            flex: 1 0 210px;
+            margin: 0 20px 40px;
+            align-self: baseline;
+            vertical-align: top;
 
-        &.mEmpty {
-            width: 200px;
-            height: 0;
-            margin-bottom: 0;
+            border: 0;
+
+            text-decoration: none;
+            text-align: left;
+
+            transition: transform 0.4s, opacity 0.4s;
+            transform: translate3d(0,0,0);
+
+            &:hover {
+                border: 0;
+                color: @linkColor;
+
+                .bPhotoPage__eAlbumsImg {
+                    transform: scale(1.05);
+                }
+                .bPhotoPage__eAlbumsText {
+                    transform: translate(0, 0.3em);
+                }
+            }
+
+            &.mEmpty {
+                height: 0;
+                margin-bottom: 0;
+            }
+            &.mHidden {
+                opacity: 0;
+                transform: scale(1.1) translate3d(0,0,0);
+            }
         }
-        &.mHidden {
-            opacity: 0;
-            transform: scale(1.1) translate3d(0,0,0);
+        &Img {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 0.5em;
+            border: 0;
+            vertical-align: bottom;
+            transition: transform 0.4s;
         }
-    }
-    &__eAlbumsImg {
-        height: 150px;
-        border: 0;
-        cursor: pointer;
-    }
-    &__eAlbumsText {
-        display: block;
-        text-align: left;
+        &Text {
+            display: inline-block;
+            text-align: left;
+            transition: transform 0.4s;
+
+            &Count {
+                color: fade(@fontColor, 80%);
+                font-size: 0.8em;
+            }
+        }
     }
 
     &__eAlbum {
@@ -135,24 +172,57 @@
         font-size: 1.5em;
     }
 
+    &__ePreloader {
+        position: fixed;
+        display: block;
+        top: 50%;
+        left: 50%;
+        width: 30px;
+        height: 30px;
+        margin: -30px/2 0 0 -30px/2;
+
+        background: url('images/preloader_dark.svg') no-repeat;
+        background-size: 30px;
+
+        font-size: 0;
+        vertical-align: top;
+        z-index: 1000;
+        animation: preloader 0.7s infinite linear;
+
+        .mHidden {
+            display: none;
+        }
+    }
+
     @media screen and (max-width: 760px) {
-        &__eHiddenPhoto {
-            width: 100px;
-            height: 0;
-            margin: 0 10px;
+        &__ePhotos {
+            -webkit-columns: 190px auto;
+               -moz-columns: 190px auto;
+                    columns: 190px auto;
         }
-        &__ePhotosLink  {
-            text-decoration: 0;
-            border: 0;
-            display: block;
-            margin: 10px;
-            cursor: pointer;
-            vertical-align: bottom;
+    }
+    @media screen and (max-width: 600px) {
+        &__ePhotos {
+            margin-right: -10px;
+            margin-left: -10px;
         }
-        &__ePhotosImg {
-            display: inline-block;
-            width: 100px;
-            height: auto;
+        &__ePhotosLink {
+            padding: 10px;
+        }
+        &__eAlbums {
+            margin-right: -10px;
+            margin-left: -10px;
+        }
+        &__eAlbumsItem {
+            margin: 0 10px 20px;
+            flex-basis: 120px;
+        }
+    }
+    @media screen and (max-width: 400px){
+        &__ePhotos {
+            -webkit-columns: 150px auto;
+               -moz-columns: 150px auto;
+                    columns: 150px auto;
         }
     }
 }
@@ -168,6 +238,8 @@
         vertical-align: top;
         width: 70%;
         padding: 0 20px;
+        box-sizing: border-box;
+
         &.mLast {
             padding-bottom: 66px;
         }
@@ -181,6 +253,8 @@
         vertical-align: middle;
         width: 70%;
         padding: 0 20px;
+        box-sizing: border-box;
+
         &.mLast {
             padding-bottom: 66px;
         }
@@ -215,6 +289,7 @@
             height: 714px;
 
             border: 0;
+            overflow: hidden;
 
             transform: translate(-50%, -50%) scale(280 / 400);
         }
@@ -227,7 +302,15 @@
         &__eArticle, &__eImage {
             max-width: 680px;
             min-width: 240px;
-            width: 90%;
+            width: 100%;
+        }
+        &__eImage {
+            padding: 0;
+
+            &Into {
+                padding: 0 20px;
+                box-sizing: border-box;
+            }
         }
     }
     @media screen and (max-width: 680px) {
@@ -247,35 +330,72 @@
         margin: 0 auto 20px;
     }
     &__eList {
-        text-align: justify;
+        display: flex;
+        flex-wrap: wrap;
         margin: 0 -20px;
     }
     &__eItem {
         display: inline-block;
-        margin: 0 20px 40px 20px;
+        flex: 1 0 200px;
+        max-width: 300px;
+        margin: 0 20px 40px;
+        align-self: baseline;
         vertical-align: top;
-        width: 220px;
+
+        text-decoration: none;
+        text-align: left;
+        border: 0;
+        outline: 0;
+        transform: translate3d(0,0,0);
+
+        &:hover {
+            border: 0;
+            color: @linkColor;
+
+            .bMCPage__eItemImg {
+                transform: scale(1.05);
+            }
+            .bMCPage__eItemText {
+                transform: translate(0, 0.3em);
+            }
+        }
+
         &.mEmpty {
             margin: 0 20px 0 20px;
         }
-    }
-    &__eItemImg {
-        width: 220px;
-        border: 0;
-        vertical-align: top;
-    }
-    &__eItemText {
-        display: block;
-        max-width: 220px;
-        cursor: pointer;
-        text-align: left;
-        &.mHeadery {
-            text-align: center;
-            cursor: auto;
-            padding-top: 10px;
-            display: block;
+        &.mNotLink:hover {
+            color: @fontColor;
+
+            .bMCPage__eItemImg {
+                transform: none;
+            }
+            .bMCPage__eItemText {
+                transform: none;
+            }
+        }
+
+        &Img {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 0.5em;
+            border: 0;
+            vertical-align: bottom;
+            transition: transform 0.4s;
+        }
+        &Text {
+            display: inline-block;
+            text-align: left;
+            transition: transform 0.4s;
+
+            &.mHeadery {
+                text-align: center;
+                cursor: auto;
+                padding-top: 10px;
+                display: block;
+            }
         }
     }
+
     &__eImage {
         display: block;
         margin: 0 auto 30px;
@@ -285,5 +405,28 @@
         vertical-align: middle;
         width: 70%;
         padding: 0 20px;
+    }
+
+    @media screen and (max-width: 760px) {
+        &__eImage {
+            position: relative;
+            left: 50%;
+            width: 100%;
+            min-width: 550px;
+            margin-left: 0;
+            margin-right: 0;
+            transform: translate(-50%, 0);
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        &__eList {
+            margin-right: -10px;
+            margin-left: -10px;
+        }
+        &__eItem {
+            flex-basis: 120px;
+            margin: 0 10px 20px;
+        }
     }
 }

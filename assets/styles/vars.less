@@ -41,6 +41,20 @@
 	        transition-delay: @delay;
 }
 
+@keyframes preloader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 @fontColor: #3a3a3a;
 @bgColor: #F1F0F0;
 @brandColor: #252957;
+
+@linkColor: lighten(@brandColor, 20%);
+@linkHoverColor: lighten(@linkColor, 15%);
+// @linkColor: #484880;
+// @linkHoverColor: #7575B6;

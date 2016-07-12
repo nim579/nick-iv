@@ -42,6 +42,7 @@
     }
     &__eIllustration {
         margin: 32px 0;
+
         &Img {
             display: block;
             width: 100%;
@@ -70,6 +71,7 @@
         transition-property: all;
         width: 100%;
         z-index: 10;
+
         &.mState {
             &_hidden {
                 position: absolute;
@@ -80,12 +82,14 @@
     }
 
     @media screen and (max-width: 760px) {
-        &__eCaption{
-            margin-left: -(100% / 90%) * 5%;
-            margin-right: -(100% / 90%) * 5%;
-        }
+        max-width: 100%;
+
         &__eParagraph {
             width: 100%;
+        }
+        &__eIllustration, &__eCaption {
+            margin-left: -20px;
+            margin-right: -20px;
         }
     }
 }
