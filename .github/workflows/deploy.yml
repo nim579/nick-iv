@@ -1,0 +1,58 @@
+name: Build and deploy project
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+
+    - name: Create GitHub deployment
+      uses: chrnorm/deployment-action@releases/v1
+      id: test
+      with:
+        token: ${{ secrets.GITHUB_TOKEN}}
+        description: 'Website'
+        environment: Prod
+
+    - run: npm ci
+
+    - run: npm run build
+      env:
+        CI: true
+
+    - name: Copy files on server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: "build"
+        target: "/www/sites/nick-iv.me"
+        rm: true
+        overwrite: true
+        strip_components: 1
+
+    - name: Update deployment status (success)
+      if: success()
+      uses: chrnorm/deployment-status@releases/v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        target_url: https://nick-iv.me/
+        state: 'success'
+        deployment_id: ${{ steps.test.outputs.deployment_id }}
+
+    - name: Update deployment status (failure)
+      if: failure()
+      uses: chrnorm/deployment-status@releases/v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        state: 'failure'
+        deployment_id: ${{ steps.test.outputs.deployment_id }}
