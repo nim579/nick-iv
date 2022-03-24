@@ -1,9 +1,9 @@
-name: Build and deploy project
+name: Build and deploy site
 
-on: [push]
+on: [push, workflow_dispatch]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +35,7 @@ jobs:
         target: "/www/sites/nick-iv.me"
         rm: true
         overwrite: true
-        strip_components: 1
+        strip_components: 2
 
     - name: Update deployment status (success)
       if: success()
