@@ -1,0 +1,54 @@
+@use 'sass:map';
+@use 'colors';
+@use 'fonts';
+@use 'sizes';
+
+@font-face {
+  font-family: 'SFRounded';
+  src: local('SFRounded Medium'), local('SFRounded-Medium'),
+    url('/assets/fonts/SFRounded-Medium.woff2') format('woff2'),
+    url('/assets/fonts/SFRounded-Medium.woff') format('woff');
+  font-weight: map.get(fonts.$weights, medium);
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SFRounded';
+  src: local('SFRounded Regular'), local('SFRounded-Regular'),
+    url('/assets/fonts/SFRounded-Regular.woff2') format('woff2'),
+    url('/assets/fonts/SFRounded-Regular.woff') format('woff');
+  font-weight: map.get(fonts.$weights, regular);
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+    font-family: 'SFRounded';
+    src: local('SFRounded Semibold'), local('SFRounded-Semibold'),
+        url('/assets/fonts/SFRounded-Semibold.woff2') format('woff2'),
+        url('/assets/fonts/SFRounded-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+:root, :root[data-theme='auto'], *[data-theme='auto'] {
+  @include colors.light();
+}
+:root[data-theme='light'], *[data-theme='light'] {
+  @include colors.light();
+}
+:root[data-theme='dark'], *[data-theme='dark'] {
+  @include colors.dark();
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme='auto'], :root:not([data-theme]) {
+    @include colors.dark();
+  }
+}
+
+@mixin smooth {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+}

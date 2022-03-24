@@ -23,10 +23,7 @@ jobs:
         environment: Prod
 
     - run: npm ci
-
-    - run: npm run build
-      env:
-        CI: true
+    - run: npm run build:prod
 
     - name: Copy files on server
       uses: appleboy/scp-action@master
@@ -34,7 +31,7 @@ jobs:
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: "build"
+        source: "dist/client"
         target: "/www/sites/nick-iv.me"
         rm: true
         overwrite: true

@@ -1,0 +1,17 @@
+@use 'sass:map';
+
+$weights: (
+  regular: normal,
+  medium: 500,
+  semibold: 600
+);
+$styles: (
+  normal: normal
+);
+
+@mixin sans($weight: normal, $style: normal) {
+  font-family: SFRounded, Helvetica Neue, Helvetica, sans-serif;
+  font-stretch: normal;
+  font-weight: map.get($weights, $weight);
+  font-style: map.get($styles, $style);
+}

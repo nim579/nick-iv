@@ -1,0 +1,40 @@
+@use 'sass:map';
+
+$-light: (
+  bg: #FFFFFF,
+  primary: #1A1919,
+  on-primary: #FFFFFF,
+  secondary: #949494,
+  border: #EFEFEF
+);
+
+$-dark: (
+  bg: #222222,
+  primary: #FFFFFF,
+  on-primary: #1A1919,
+  secondary: #696969,
+  border: #323232
+);
+
+@mixin light() {
+  @each $name, $value in $-light {
+    --color-#{$name}: #{$value};
+  }
+}
+
+@mixin dark() {
+  @each $name, $value in $-dark {
+    --color-#{$name}: #{$value};
+  }
+}
+
+$lib: ();
+
+@each $name, $value in $-light {
+  $color: var(--color-#{$name}, $value);
+  $lib: map.set($lib, $name, $color);
+}
+
+@function get($name) {
+  @return map.get($lib, $name);
+}

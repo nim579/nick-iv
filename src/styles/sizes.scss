@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+
+$font: 10px;
+$min: 320px;
+$column: 700px;
+$ui: 32px;
+
+$margin: 24px;
+$gap: 10px;
+
+$media: (
+  tablet: 960px,
+  mobile: 680px
+);
+
+@function _nounit($number) {
+  @return math.div($number, ($number * 0 + 1));
+}
+
+@function em($size, $origin: $font) {
+  @return calc($size / $origin) * 1em;
+}
+
+@mixin font($size: $font, $line-height: false) {
+  font-size: calc(_nounit($size) / _nounit($font)) * 1rem;
+
+  @if $line-height {
+    @if meta.type-of($line-height) != 'number' {
+      line-height: $line-height;
+    } @else if math.unit($line-height) == "%" {
+      line-height: calc(_nounit($line-height) / 100) * 1em;
+    } @else {
+      line-height: em(_nounit($line-height), $size);
+    }
+  }
+}
+
+@mixin screen($screen: mobile) {
+  @media screen and (max-width: map.get($media, $screen)) {
+    @content;
+  }
+}
