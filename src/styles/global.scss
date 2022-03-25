@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'SFRounded';
-  src: local('SFRounded Medium'), local('SFRounded-Medium'),
+  src: local('SF Pro Rounded Medium'), local('SFRounded-Medium'),
     url('/assets/fonts/SFRounded-Medium.woff2') format('woff2'),
     url('/assets/fonts/SFRounded-Medium.woff') format('woff');
   font-weight: map.get(fonts.$weights, medium);
@@ -14,7 +14,7 @@
 }
 @font-face {
   font-family: 'SFRounded';
-  src: local('SFRounded Regular'), local('SFRounded-Regular'),
+  src: local('SF Pro Rounded Regular'), local('SFRounded-Regular'),
     url('/assets/fonts/SFRounded-Regular.woff2') format('woff2'),
     url('/assets/fonts/SFRounded-Regular.woff') format('woff');
   font-weight: map.get(fonts.$weights, regular);
@@ -23,7 +23,7 @@
 }
 @font-face {
     font-family: 'SFRounded';
-    src: local('SFRounded Semibold'), local('SFRounded-Semibold'),
+    src: local('SF Pro Rounded Semibold'), local('SFRounded-Semibold'),
         url('/assets/fonts/SFRounded-Semibold.woff2') format('woff2'),
         url('/assets/fonts/SFRounded-Semibold.woff') format('woff');
     font-weight: 600;
