@@ -67,6 +67,7 @@ html, body {
   width: 100%;
 
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   min-width: sizes.$min;
 
   margin: 0;

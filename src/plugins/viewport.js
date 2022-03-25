@@ -26,6 +26,11 @@ const addOvserver = (el, callback, modifiers, root) => {
     threshold = [0];
     break;
 
+  case modifiers.middle:
+    type = 'middle';
+    threshold = [0.5];
+    break;
+
   case modifiers.full:
     type = 'full';
     threshold = [0, 1];

@@ -71,11 +71,10 @@ export default {
     align-items: center;
     justify-content: flex-start;
     margin: auto;
-    padding: 60px sizes.$margin;
+    padding: 80px sizes.$margin 60px;
 
     @include sizes.screen() {
-      padding-top: sizes.$margin;
-      padding-bottom: 0;
+      padding-bottom: sizes.$margin;
     }
   }
 

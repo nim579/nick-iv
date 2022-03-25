@@ -14,7 +14,7 @@
           <img v-if="darkmode" src="../../../assets/images/teletype_art_dark.png" alt="" class="sectionTeletype__art_img">
           <img v-else src="../../../assets/images/teletype_art_light.png" alt="" class="sectionTeletype__art_img">
 
-          <Fade class="sectionTeletype__art_fade" />
+          <div class="sectionTeletype__art_fade" />
         </div>
 
         <div class="sectionTeletype__wrap">
@@ -29,7 +29,7 @@
           <div class="sectionTeletype__bloggers">
             <a
               v-for="blog in bloggers" :key="blog.name"
-              class="sectionTeletype__blogger"
+              class="sectionTeletype__blogger" :class="{'m_nomobile': blog.noMobile}"
               :href="blog.link"
             >
               <div class="sectionTeletype__blogger_userpic">
@@ -39,6 +39,10 @@
                 {{ blog.label }}
               </div>
             </a>
+          </div>
+
+          <div class="sectionTeletype__actions">
+            <a href="https://teletype.in" target="_blank" class="sectionTeletype__button">Join Teletype</a>
           </div>
         </div>
       </div>
@@ -50,7 +54,6 @@
 
 <script>
 import Numbers from '../Numbers.vue';
-import Fade from '../../../assets/images/fade.svg?component';
 import LogoTeletype from '../../../assets/images/logo_teletype.svg?component';
 
 import userpicLebedev from '../../../assets/images/userpic_lebedev.png?url';
@@ -60,7 +63,7 @@ import userpicGershman from '../../../assets/images/userpic_gershman.png?url';
 import userpicStillavin from '../../../assets/images/userpic_stillavin.png?url';
 
 export default {
-  components: { Numbers, Fade, LogoTeletype },
+  components: { Numbers, LogoTeletype },
 
   props: {
     nextSection: { type: Object, default: null }
@@ -71,15 +74,15 @@ export default {
       { label: 'MAU', value: '4M' },
       { label: 'Users', value: '750K' },
       { label: 'Articles', value: '2.5M' },
-      { label: 'Daily views', value: '300K' },
+      { label: 'Avg. RPS', value: '480' },
     ],
 
     bloggers: [
       { name: 'lebedev',   label: 'Artemy Lebedev', link: 'https://blog.tema.ru', userpic: userpicLebedev },
       { name: 'varlamov',  label: 'Ilya Varlamov', link: 'https://varlamov.ru', userpic: userpicVarlamov },
       { name: 'muimau',    label: 'Miu Mau', link: 'https://blog.mammamiu.com', userpic: userpicMiumau },
-      { name: 'urbanblog', label: 'Arkadiy Gershman', link: 'https://urbanblog.ru', userpic: userpicGershman },
-      { name: 'stillavin', label: 'Sergey Stillavin', link: 'https://teletype.in/@stillavin', userpic: userpicStillavin },
+      { name: 'urbanblog', label: 'Arkadiy Gershman', link: 'https://urbanblog.ru', userpic: userpicGershman, noMobile: true },
+      { name: 'stillavin', label: 'Sergey Stillavin', link: 'https://teletype.in/@stillavin', userpic: userpicStillavin, noMobile: true },
       { name: 'more',      label: 'Many more...', link: 'https://teletype.in' },
     ]
   }),
@@ -98,11 +101,10 @@ export default {
     align-items: center;
     justify-content: flex-start;
     margin: auto;
-    padding: 60px sizes.$margin;
+    padding: 80px sizes.$margin 60px;
 
     @include sizes.screen() {
-      padding-top: sizes.$margin;
-      padding-bottom: 0;
+      padding-bottom: sizes.$margin;
     }
   }
 
@@ -149,7 +151,7 @@ export default {
       left: 0;
       width: 100%;
       height: 100%;
-      color: colors.get(bg);
+      background: linear-gradient(to bottom, colors.get(bg-transparent) 10%, colors.get(bg) 90%);
     }
   }
 
@@ -182,6 +184,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: sizes.$margin;
+    margin-bottom: 34px;
 
     @include sizes.screen(mobile) {
       grid-template-columns: repeat(2, 1fr);
@@ -217,6 +220,33 @@ export default {
       color: colors.get(primary);
       text-align: center;
     }
+
+    @include sizes.screen(mobile) {
+      &.m_nomobile {
+        display: none;
+      }
+    }
+  }
+
+  &__actions {
+    display: block;
+    text-align: center;
+  }
+  &__button {
+    display: inline-block;
+    margin: 0;
+    padding: 15px 30px;
+
+    border-radius: 16px;
+    border: 0;
+    background: #5B41F5;
+
+    @include fonts.sans(semibold);
+    @include sizes.font(15, 24);
+
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none;
   }
 }
 </style>

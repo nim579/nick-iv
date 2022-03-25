@@ -2,6 +2,7 @@
 
 $-light: (
   bg: #FFFFFF,
+  bg-transparent: fade-out(#FFFFFF, 1),
   primary: #1A1919,
   on-primary: #FFFFFF,
   secondary: #949494,
@@ -10,6 +11,7 @@ $-light: (
 
 $-dark: (
   bg: #222222,
+  bg-transparent: fade-out(#222222, 1),
   primary: #FFFFFF,
   on-primary: #1A1919,
   secondary: #696969,

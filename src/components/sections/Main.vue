@@ -23,7 +23,7 @@
       <div class="sectionMain__profile_spacer" />
     </article>
 
-    <slot :next="nextSection" />
+    <Scroll v-if="nextSection" label="Projects" :link="nextSection.link" />
   </section>
 </template>
 

@@ -9,7 +9,7 @@
 
       <div class="sectionMust__info">
         <header class="sectionMust__logo">
-          <img src="../../../assets/images/logo_must.svg" alt="" class="sectionMust__logo_img">
+          <img src="../../../assets/images/logo_must.svg?url" alt="" class="sectionMust__logo_img">
           <h2 class="sectionMust__logo_name">
             Must
           </h2>
@@ -66,13 +66,12 @@ export default {
     width: 100%;
     max-width: 1000px;
     margin: auto;
-    padding: 60px sizes.$margin;
+    padding: 80px sizes.$margin 60px;
     box-sizing: border-box;
 
     @include sizes.screen() {
       flex-direction: column;
-      padding-top: sizes.$margin;
-      padding-bottom: 0;
+      padding-bottom: sizes.$margin;
     }
   }
 
@@ -89,6 +88,7 @@ export default {
       display: block;
       width: 100%;
       height: auto;
+      min-height: 0;
       vertical-align: top;
 
       @include sizes.screen() {
