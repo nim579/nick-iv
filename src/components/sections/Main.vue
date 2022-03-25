@@ -30,8 +30,8 @@
 <script>
 import IconEmail from '../../../assets/images/icon_email.svg?component';
 import IconGithub from '../../../assets/images/icon_github.svg?component';
-import IconMust from '../../../assets/images/icon_teletype.svg?component';
-import IconTeletype from '../../../assets/images/icon_must.svg?component';
+import IconMust from '../../../assets/images/icon_must.svg?component';
+import IconTeletype from '../../../assets/images/icon_teletype.svg?component';
 
 import Scroll from '../Scroll.vue';
 

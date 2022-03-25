@@ -91,9 +91,9 @@ html, body {
 
 body {
     position: relative;
-    -webkit-tap-highlight-color: fade-out(white, 0%);
-    -webkit-tap-highlight-color: fade-out(white, 0%);
-    -webkit-focus-ring-color: fade-out(white, 0%);
+    -webkit-tap-highlight-color: fade-out(white, 1);
+    -webkit-tap-highlight-color: fade-out(white, 1);
+    -webkit-focus-ring-color: fade-out(white, 1);
     -webkit-text-size-adjust: none;
     outline: none;
 }
