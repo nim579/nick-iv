@@ -13,7 +13,8 @@ export const script = {
         ym(22330363, "init", {
           clickmap: true,
           trackLinks: true,
-          accurateTrackBounce: true
+          accurateTrackBounce: true,
+          webvisor: true
         });
       `
     });
