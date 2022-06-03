@@ -18,17 +18,17 @@ const routesToPrerender = fs
 Promise.resolve()
   .then(async () => {
     for (const url of routesToPrerender) {
-      const [appHtml, metas] = await render(url, manifest);
+      const { html, meta, links } = await render(url, manifest);
 
-      const html = template
-        .replace('<html>', metas.htmlAttrs ? `<html ${metas.htmlAttrs}>` : '<html>')
-        .replace('<body>', metas.bodyAttrs ? `<body ${metas.bodyAttrs}>` : '<body>')
-        .replace('<!--meta-head-->', metas.head || '')
-        .replace('<!--meta-body-->', metas.body || '')
-        .replace('<!--app-html-->', appHtml);
+      const result = template
+        .replace('<html>', meta.htmlAttrs ? `<html ${meta.htmlAttrs}>` : '<html>')
+        .replace('<body>', meta.bodyAttrs ? `<body ${meta.bodyAttrs}>` : '<body>')
+        .replace('<!--meta-head-->', (meta.headTags || '') + links)
+        .replace('<!--meta-body-->', meta.bodyTags || '')
+        .replace('<!--app-html-->', html);
 
       const filePath = `dist/client${url === '/' ? '/index' : url}.html`;
-      fs.writeFileSync(toAbsolute(filePath), html);
+      fs.writeFileSync(toAbsolute(filePath), result);
 
       // eslint-disable-next-line no-console
       console.log('pre-rendered:', filePath);

@@ -43,9 +43,7 @@ export default defineConfig(() => {
     },
 
     ssr: {
-      noExternal: [
-        'vue-meta'
-      ]
+      noExternal: []
     },
 
     server: {

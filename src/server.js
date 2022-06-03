@@ -1,22 +1,21 @@
 import { createApp } from './index';
 import { renderToString } from 'vue/server-renderer';
 import { basename, extname } from 'path';
-import { renderMetaToString } from 'vue-meta/ssr';
+import { renderHeadToString } from '@vueuse/head';
 
 export const render = async (url, manifest) => {
-  const { app, router } = createApp(true);
+  const { app, router, head } = createApp(true);
 
   router.push(url);
   await router.isReady();
 
   const ctx = {};
   const html = await renderToString(app, ctx);
-  await renderMetaToString(app, ctx);
+  const meta = await renderHeadToString(head);
 
-  const preloadLinks = renderPreloadLinks(ctx.modules, manifest);
-  ctx.teleports.head = (ctx.teleports.head || '') + preloadLinks;
+  const links = renderPreloadLinks(ctx.modules, manifest);
 
-  return [html, ctx.teleports];
+  return { html, ctx, meta, links };
 };
 
 function renderPreloadLinks(modules, manifest) {

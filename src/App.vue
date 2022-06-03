@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <metainfo />
     <router-view />
 
     <!-- Yandex.Metrika counter -->

@@ -1,6 +1,6 @@
 import { createApp as createVueApp } from 'vue';
 import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router';
-import { createMetaManager, plugin as metaPlugin } from 'vue-meta';
+import { createHead, useHead } from '@vueuse/head';
 
 import dom from './plugins/dom';
 import scroll from './plugins/scroll';
@@ -10,6 +10,17 @@ import App from './App';
 
 const Main = () => import('./pages/main');
 const Page404 = () => import('./pages/404');
+
+const metaPlugin = (app, head) => {
+  app.use(head);
+
+  app.mixin({
+    created() {
+      if (typeof this.$options.metaInfo !== 'function') return;
+      useHead(this.$options.metaInfo.call(this));
+    }
+  });
+};
 
 const routes = [
   {
@@ -31,11 +42,10 @@ export const createApp = (server = false) => {
     routes
   });
 
-  const metaManager = createMetaManager(server);
+  const head = createHead();
 
   app.use(router);
-  app.use(metaManager);
-  app.use(metaPlugin);
+  app.use(metaPlugin, head);
 
   app.use(dom);
   app.use(scroll);
@@ -44,6 +54,6 @@ export const createApp = (server = false) => {
   return {
     app,
     router,
-    metaManager
+    head
   };
 };
