@@ -14,7 +14,7 @@
 
         <ul class="sectionMain__profile_socials">
           <li v-for="item of socials" :key="item.name" class="sectionMain__profile_social">
-            <a :href="item.link" target="_blank" :title="item.title" class="sectionMain__profile_social_link">
+            <a :href="item.link" target="_blank" :title="item.title" rel="me" class="sectionMain__profile_social_link">
               <component :is="`icon-${item.name}`" class="sectionMain__profile_social_icon" />
             </a>
           </li>
