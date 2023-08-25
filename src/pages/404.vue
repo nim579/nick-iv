@@ -3,9 +3,11 @@
     <h1 class="errorPage__title">
       404
     </h1>
+
     <p class="errorPage__text">
       Page not found
     </p>
+
     <router-link :to="{name: 'main'}" class="errorPage__link">
       &larr; <span class="errorPage__link_text">To main page</span>
     </router-link>
