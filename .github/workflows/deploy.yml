@@ -16,7 +16,7 @@ jobs:
         environment: Prod
 
     - name: Build and deploy on server
-      uses: appleboy/ssh-action@v1.2.0
+      uses: appleboy/ssh-action@v1.2.5
       with:
         host: ${{ vars.REMOTE_HOST }}
         username: ${{ vars.REMOTE_USER }}
