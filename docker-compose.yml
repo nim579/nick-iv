@@ -5,7 +5,9 @@ services:
     container_name: nick-iv
     restart: unless-stopped
     networks:
-      - nim
+      nim:
+        aliases:
+          - nick-iv
 
 networks:
   nim:
