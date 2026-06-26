@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    image: nick-iv:latest
+    container_name: nick-iv
+    restart: unless-stopped
+    networks:
+      - nim
+
+networks:
+  nim:
+    external: true

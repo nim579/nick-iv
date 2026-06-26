@@ -7,35 +7,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12
-
     - name: Create GitHub deployment
       uses: chrnorm/deployment-action@releases/v1
-      id: test
+      id: deployment
       with:
-        token: ${{ secrets.GITHUB_TOKEN}}
+        token: ${{ secrets.GITHUB_TOKEN }}
         description: 'Website'
         environment: Prod
 
-    - run: npm ci
-    - run: npm run build:prod
-
-    - name: Copy files on server
-      uses: appleboy/scp-action@master
+    - name: Build and deploy on server
+      uses: appleboy/ssh-action@v1.2.0
       with:
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
+        host: ${{ vars.REMOTE_HOST }}
+        username: ${{ vars.REMOTE_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: "dist/client"
-        target: "/www/sites/nick-iv.me"
-        rm: true
-        overwrite: true
-        strip_components: 2
+        script: |
+          set -euo pipefail
+          export DEPLOY_DIR=/var/www/nick-iv.me
+
+          if [ -f "${DEPLOY_DIR}/scripts/deploy/bootstrap-repository.sh" ]; then
+            bash "${DEPLOY_DIR}/scripts/deploy/bootstrap-repository.sh"
+          else
+            curl -fsSL "https://raw.githubusercontent.com/nim579/nick-iv/master/scripts/deploy/bootstrap-repository.sh" \
+              | DEPLOY_DIR="${DEPLOY_DIR}" bash
+          fi
+
+          bash "${DEPLOY_DIR}/scripts/deploy/deploy.sh"
 
     - name: Update deployment status (success)
       if: success()
@@ -44,7 +41,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         target_url: https://nick-iv.me/
         state: 'success'
-        deployment_id: ${{ steps.test.outputs.deployment_id }}
+        deployment_id: ${{ steps.deployment.outputs.deployment_id }}
 
     - name: Update deployment status (failure)
       if: failure()
@@ -52,4 +49,4 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         state: 'failure'
-        deployment_id: ${{ steps.test.outputs.deployment_id }}
+        deployment_id: ${{ steps.deployment.outputs.deployment_id }}
