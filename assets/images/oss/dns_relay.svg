@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path class="dash" d="M14 58h18l26 16M14 80h44M14 102h18l26-16" stroke-dasharray="4 7"/>
+  <circle class="ac" cx="78" cy="80" r="18"/>
+  <circle class="ac" cx="78" cy="80" r="5" fill="currentColor"/>
+  <path d="M96 80h20"/>
+  <g class="up">
+    <rect x="116" y="76" width="30" height="24" rx="6"/>
+    <path d="M123 76v-7a8 8 0 0 1 16 0v7"/>
+    <circle cx="131" cy="88" r="2.5" fill="currentColor"/>
+  </g>
+</svg>

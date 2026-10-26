@@ -1,16 +1,19 @@
 {
   "name": "nick-iv.me",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "nick-iv.me website",
-  "main": "index.js",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "vite build --mode development",
-    "build:client": "vite build --outDir dist/client --ssrManifest",
-    "build:server": "vite build --outDir dist/server --ssr src/server.js",
-    "build:prod": "npm run build:client && npm run build:server && node ./generate.js",
     "start": "vite",
-    "start:preview": "vite preview"
+    "build": "vite build",
+    "build:prod": "vite-ssg build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .js,.vue",
+    "images": "node scripts/optimize-images.mjs"
   },
   "repository": {
     "type": "git",
@@ -23,19 +26,18 @@
   },
   "homepage": "https://github.com/nim579/nick-iv#readme",
   "dependencies": {
-    "@vueuse/head": "^0.9.8",
-    "lodash": "^4.18.1",
-    "sass": "^1.101.0",
-    "vue": "^3.5.39",
-    "vue-router": "^4.6.4"
+    "@unhead/vue": "^2.0.0",
+    "vue": "^3.5.0",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@vitejs/plugin-vue": "^2.3.4",
-    "eslint": "^8.11.0",
-    "eslint-plugin-vue": "^8.7.1",
-    "rollup-plugin-node-externals": "^4.1.1",
-    "vite": "^2.9.18",
-    "vite-svg-loader": "^3.6.0"
+    "@vitejs/plugin-vue": "^6.0.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-vue": "^9.33.0",
+    "sass": "^1.89.0",
+    "sharp": "^0.35.5",
+    "vite": "^7.0.0",
+    "vite-ssg": "^28.0.0",
+    "vite-svg-loader": "^5.1.0"
   }
 }

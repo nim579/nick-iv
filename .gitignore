@@ -44,3 +44,6 @@ jspm_packages
 /dist
 /dev
 /config.json
+
+# vite-ssg
+.vite-ssg-temp

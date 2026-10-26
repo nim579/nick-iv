@@ -1,53 +1,63 @@
 import { defineConfig } from 'vite';
-import path from 'path';
+import { fileURLToPath, URL } from 'node:url';
 import vue from '@vitejs/plugin-vue';
 import svgLoader from 'vite-svg-loader';
 
-export default defineConfig(() => {
-  return {
-    plugins: [
-      vue(),
+const root = fileURLToPath(new URL('.', import.meta.url));
 
-      svgLoader({
-        svgoConfig: {
-          plugins: [{name: 'removeViewBox', active: false}]
-        }
-      })
-    ],
+export default defineConfig({
+  plugins: [
+    vue(),
 
-    resolve: {
-      extensions: ['.vue', '.js', '.json', '.less'],
-      alias: {
-        '@': path.resolve(__dirname, './src')
+    svgLoader({
+      svgo: true,
+      svgoConfig: {
+        multipass: true,
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {
+                removeViewBox: false,
+                cleanupIds: false
+              }
+            }
+          }
+        ]
       }
-    },
+    })
+  ],
 
-    build: {
-      outDir: './dist',
-      assetsDir: './static',
-      assetsInlineLimit: 1024
-    },
-
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: `
-          @use 'sass:map';
-          @use '@/styles/colors';
-          @use '@/styles/fonts';
-          @use '@/styles/sizes';
-          @use '@/styles/ui';
-          `
-        }
-      }
-    },
-
-    ssr: {
-      noExternal: []
-    },
-
-    server: {
-      host: '0.0.0.0'
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '~': root
     }
-  };
+  },
+
+  build: {
+    outDir: './dist',
+    assetsDir: 'static',
+    assetsInlineLimit: 1024
+  },
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+        additionalData: '@use \'@/styles/mixins\' as *;'
+      }
+    }
+  },
+
+  ssgOptions: {
+    script: 'async',
+    dirStyle: 'flat',
+    formatting: 'minify',
+    includedRoutes: () => ['/', '/404']
+  },
+
+  server: {
+    host: '0.0.0.0'
+  }
 });

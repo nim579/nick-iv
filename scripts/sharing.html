@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+  Source of assets/images/sharing.png (1200x630), the social preview.
+  Render with headless Chrome:
+
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+    --force-device-scale-factor=1 --window-size=1200,630 \
+    --screenshot=assets/images/sharing.png file://$PWD/scripts/sharing.html
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    @font-face { font-family: SFR; font-weight: 400; src: url('../assets/fonts/SFRounded-Regular.woff2'); }
+    @font-face { font-family: SFR; font-weight: 600; src: url('../assets/fonts/SFRounded-Semibold.woff2'); }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; width: 1200px; height: 630px; }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 72px 80px;
+      background: #fff;
+      color: #111113;
+      font-family: SFR, sans-serif;
+    }
+
+    .who { display: flex; align-items: center; gap: 24px; }
+
+    .userpic {
+      width: 96px;
+      height: 96px;
+      background: #f5f5f7 url('../assets/images/userpic.png') center / cover;
+      -webkit-mask: url('../assets/images/mask.svg') center / 100% 100% no-repeat;
+    }
+
+    .name { font-size: 36px; font-weight: 600; line-height: 1.2; }
+    .role { font-size: 26px; color: #66666d; }
+
+    h1 {
+      margin: 0;
+      font-size: 96px;
+      font-weight: 600;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    h1 span { color: #66666d; }
+
+    .foot { display: flex; justify-content: space-between; font-size: 28px; color: #66666d; }
+    .foot b { color: #111113; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="who">
+    <div class="userpic"></div>
+    <div>
+      <div class="name">Nikolay Ivanushkin</div>
+      <div class="role">CTO &amp; fullstack developer</div>
+    </div>
+  </div>
+
+  <h1>I build AI agents <span>and products used by millions.</span></h1>
+
+  <div class="foot">
+    <span><b>Captain</b> · Teletype · Must</span>
+    <span>nick-iv.me</span>
+  </div>
+</body>
+</html>

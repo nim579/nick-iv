@@ -1,114 +1,81 @@
 <template>
-  <div id="app">
-    <router-view />
-
-    <!-- Yandex.Metrika counter -->
-    <Metrika />
-    <MetrikaNS />
-    <!-- /Yandex.Metrika counter -->
-  </div>
+  <router-view />
 </template>
 
-<script>
+<script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import { useHead } from '@unhead/vue';
+
 import ogImage from '../assets/images/sharing.png?url';
 import touchImage from '../assets/images/apple-touch-icon.png?url';
+import fontRegular from '../assets/fonts/SFRounded-Regular.woff2?url';
+import fontSemibold from '../assets/fonts/SFRounded-Semibold.woff2?url';
 
-import { script as Metrika, noscript as MetrikaNS} from './components/Metrika';
+import { site, socials } from './data/site';
 
-export default {
-  components: { Metrika, MetrikaNS },
+const route = useRoute();
 
-  data: () => ({
-    site: 'https://nick-iv.me',
-  }),
+const canonical = computed(() => site.url + (route.path === '/' ? '/' : route.path));
+const image = site.url + ogImage;
 
-  metaInfo() {
-    return {
-      meta: [
-        { property: 'og:url', content: this.site },
-        { property: 'twitter:card', content: 'summary_large_image' },
-        { property: 'og:title', content: 'Nick Iv' },
-        { property: 'twitter:title', content: 'Nick Iv' },
-        { property: 'og:description', content: 'Fullstack developer & CTO' },
-        { property: 'twitter:description', content: 'Fullstack developer & CTO' },
-        { property: 'og:image', content: this.site + ogImage },
-        { property: 'twitter:image', content: this.site + ogImage },
-        { property: 'og:image:type', content: 'image/png' },
-        { property: 'og:image:width', content: '1200' },
-        { property: 'og:image:height', content: '630' },
-      ],
-
-      link: [
-        { rel: 'cannonical', href: this.site + this.$route.path },
-        { rel: 'apple-touch-icon', once: true, href: this.site + touchImage },
-      ]
-    };
-  }
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.fullName,
+  alternateName: site.name,
+  jobTitle: 'CTO',
+  url: site.url,
+  email: site.email,
+  image: image,
+  sameAs: socials.map(item => item.link)
 };
+
+// Yandex.Metrika, without Webvisor (session recording).
+const metrika = `
+  (function (m, e, t, r, i, k, a) {
+    m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+    m[i].l = 1 * new Date();
+    k = e.createElement(t); a = e.getElementsByTagName(t)[0]; k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
+  })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+  ym(22330363, 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true });
+`;
+
+useHead({
+  htmlAttrs: { lang: 'en' },
+  title: site.title,
+  titleTemplate: null,
+
+  meta: [
+    { name: 'description', content: site.description },
+    { name: 'author', content: site.fullName },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:site_name', content: site.name },
+    { property: 'og:locale', content: 'en_US' },
+    { property: 'og:url', content: canonical },
+    { property: 'og:title', content: site.title },
+    { property: 'og:description', content: site.description },
+    { property: 'og:image', content: image },
+    { property: 'og:image:type', content: 'image/png' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: site.title },
+    { name: 'twitter:description', content: site.description },
+    { name: 'twitter:image', content: image }
+  ],
+
+  link: [
+    { rel: 'canonical', href: canonical },
+    { rel: 'apple-touch-icon', href: site.url + touchImage },
+    { rel: 'preload', href: fontRegular, as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
+    { rel: 'preload', href: fontSemibold, as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }
+  ],
+
+  script: [
+    { type: 'application/ld+json', innerHTML: JSON.stringify(person) },
+    { innerHTML: metrika }
+  ]
+});
 </script>
-
-
-<style lang="scss">
-@use './styles/global';
-
-html {
-  @include fonts.sans();
-
-  background: colors.get(bg);
-
-  font-size: sizes.$font;
-  color: colors.get(primary);
-
-  @include global.smooth();
-}
-
-html, body {
-  width: 100%;
-
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-  min-width: sizes.$min;
-
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-  &.m_snap {
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    scroll-padding: 0;
-    overflow: auto;
-  }
-  &.m_fixed {
-    position: fixed;
-    height: 100vh;
-    height: -webkit-fill-available;
-    overflow: hidden;
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
-body {
-    position: relative;
-    -webkit-tap-highlight-color: fade-out(white, 1);
-    -webkit-tap-highlight-color: fade-out(white, 1);
-    -webkit-focus-ring-color: fade-out(white, 1);
-    -webkit-text-size-adjust: none;
-    outline: none;
-}
-
-img {
-    border: 0;
-    vertical-align: top;
-}
-
-#app {
-    display: block;
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-</style>

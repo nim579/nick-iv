@@ -1,6 +1,13 @@
 name: Build and deploy site
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
 
 jobs:
   deploy:
